@@ -158,7 +158,7 @@
     
     EAIntroPage *page3 = [EAIntroPage page];
     page3.title = @"Final Step";
-    page3.desc = @"Press the record button and test it.";
+    page3.desc = @"Press the record button and test it. In the multiply record paper, u could shake your phone to remove recorded messages";
     page3.bgImage = [UIImage imageNamed:@"3"];
     page3.titleImage = [UIImage imageNamed:@"femalecodertocat"];
     
@@ -169,7 +169,7 @@
 }
 
 - (void)introDidFinish {
-    NSLog(@"Intro callback");
+//    NSLog(@"Intro callback");
 }
 
 

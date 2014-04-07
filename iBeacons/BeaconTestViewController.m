@@ -92,23 +92,6 @@
     if([beacons count] > 0)
     {
         
-        if(!self.selectedBeacon)
-        {
-            // initialy pick closest beacon
-            self.selectedBeacon = [beacons objectAtIndex:0];
-        }
-        else
-        {
-            for (ESTBeacon* cBeacon in beacons)
-            {
-                // update beacon it same as selected initially
-                if([self.selectedBeacon.major unsignedShortValue] == [cBeacon.major unsignedShortValue] &&
-                   [self.selectedBeacon.minor unsignedShortValue] == [cBeacon.minor unsignedShortValue])
-                {
-                    self.selectedBeacon = cBeacon;
-                }
-            }
-        }
         beaconArray=beacons;
 //        NSLog(@"%lu",(unsigned long)beacons.count);
 //        ESTBeacon *ss= [beaconArray objectAtIndex:0];
@@ -140,15 +123,11 @@
             {
                 NSArray *beaconIds=[location objectForKey:@"beaconIds"];
                 NSDictionary *dict;
-//                NSLog(@"111");
                 for (dict in beaconIds) {
-//                    NSLog(@"222");
                     NSString *string= [dict objectForKey:@"beaconId"];
-//                    NSLog(@"%@",string );
                     if ([string rangeOfString:selectedMajor].location!=NSNotFound) {
                         matchMajor=[location objectForKey:@"locationId"];
                         actualRoom.text= matchMajor;
-//                        NSLog(@"%@",matchMajor);
                     }
                 }
              

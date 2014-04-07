@@ -55,6 +55,30 @@
 		185AE2E418D802D500CCF3ED /* PBIconDrawning.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AE2D718D802D500CCF3ED /* PBIconDrawning.m */; };
 		185AE2E518D802D500CCF3ED /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AE2D918D802D500CCF3ED /* UIImage+Additions.m */; };
 		185AE2E718D803B000CCF3ED /* estimote1_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 185AE2E618D803B000CCF3ED /* estimote1_icon.png */; };
+		185AF16118EFBEA10043FBF1 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AF15E18EFBEA10043FBF1 /* CustomButton.m */; };
+		185AF16218EFBEA10043FBF1 /* EmitterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AF16018EFBEA10043FBF1 /* EmitterView.m */; };
+		185AF16618EFC2DE0043FBF1 /* snow1.png in Resources */ = {isa = PBXBuildFile; fileRef = 185AF16318EFC2DE0043FBF1 /* snow1.png */; };
+		185AF16718EFC2DE0043FBF1 /* star1.png in Resources */ = {isa = PBXBuildFile; fileRef = 185AF16418EFC2DE0043FBF1 /* star1.png */; };
+		185AF16818EFC2DE0043FBF1 /* stars2.png in Resources */ = {isa = PBXBuildFile; fileRef = 185AF16518EFC2DE0043FBF1 /* stars2.png */; };
+		185AF18A18EFCA010043FBF1 /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AF17E18EFCA010043FBF1 /* ATMHud.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		185AF18B18EFCA010043FBF1 /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AF18118EFCA010043FBF1 /* ATMHudQueueItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		185AF18C18EFCA010043FBF1 /* ATMHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AF18318EFCA010043FBF1 /* ATMHudView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		185AF18D18EFCA010043FBF1 /* ATMProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AF18518EFCA010043FBF1 /* ATMProgressLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		185AF18E18EFCA010043FBF1 /* ATMSoundFX.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AF18718EFCA010043FBF1 /* ATMSoundFX.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		185AF18F18EFCA010043FBF1 /* ATMTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AF18918EFCA010043FBF1 /* ATMTextLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		185AF19118EFCD800043FBF1 /* 19-check.png in Resources */ = {isa = PBXBuildFile; fileRef = 185AF19018EFCD800043FBF1 /* 19-check.png */; };
+		185AF19918F07B0F0043FBF1 /* XYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AF19318F07B0F0043FBF1 /* XYAlertView.m */; };
+		185AF19A18F07B0F0043FBF1 /* XYAlertViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AF19618F07B0F0043FBF1 /* XYAlertViewManager.m */; };
+		185AF19B18F07B0F0043FBF1 /* XYLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AF19818F07B0F0043FBF1 /* XYLoadingView.m */; };
+		185AF1A218F07B250043FBF1 /* alertView_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185AF19C18F07B250043FBF1 /* alertView_bg@2x.png */; };
+		185AF1A318F07B250043FBF1 /* alertView_button_gray_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185AF19D18F07B250043FBF1 /* alertView_button_gray_pressed@2x.png */; };
+		185AF1A418F07B250043FBF1 /* alertView_button_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185AF19E18F07B250043FBF1 /* alertView_button_gray@2x.png */; };
+		185AF1A518F07B250043FBF1 /* alertView_button_green_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185AF19F18F07B250043FBF1 /* alertView_button_green_pressed@2x.png */; };
+		185AF1A618F07B250043FBF1 /* alertView_button_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185AF1A018F07B250043FBF1 /* alertView_button_green@2x.png */; };
+		185AF1A718F07B250043FBF1 /* alertView_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185AF1A118F07B250043FBF1 /* alertView_loading@2x.png */; };
+		185AF1AA18F09C960043FBF1 /* BeaconsCollecetionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 185AF1A918F09C960043FBF1 /* BeaconsCollecetionData.m */; };
+		1876FFE418F0D9B8008281FE /* sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1876FFE318F0D9B8008281FE /* sound.wav */; };
+		1876FFE618F0DB12008281FE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1876FFE518F0DB12008281FE /* AVFoundation.framework */; };
 		18961B6C18DEB36000530038 /* PendulumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18961B6B18DEB36000530038 /* PendulumView.m */; };
 		18961B6E18E0CA2800530038 /* shopping_cart.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18961B6D18E0CA2800530038 /* shopping_cart.jpg */; };
 		189A569818D914A9001B121A /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 189A569118D914A9001B121A /* REMenu.m */; };
@@ -168,6 +192,44 @@
 		185AE2D818D802D500CCF3ED /* UIImage+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additions.h"; sourceTree = "<group>"; };
 		185AE2D918D802D500CCF3ED /* UIImage+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additions.m"; sourceTree = "<group>"; };
 		185AE2E618D803B000CCF3ED /* estimote1_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = estimote1_icon.png; sourceTree = "<group>"; };
+		185AF15D18EFBEA10043FBF1 /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		185AF15E18EFBEA10043FBF1 /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
+		185AF15F18EFBEA10043FBF1 /* EmitterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmitterView.h; sourceTree = "<group>"; };
+		185AF16018EFBEA10043FBF1 /* EmitterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmitterView.m; sourceTree = "<group>"; };
+		185AF16318EFC2DE0043FBF1 /* snow1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow1.png; sourceTree = "<group>"; };
+		185AF16418EFC2DE0043FBF1 /* star1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star1.png; sourceTree = "<group>"; };
+		185AF16518EFC2DE0043FBF1 /* stars2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stars2.png; sourceTree = "<group>"; };
+		185AF17D18EFCA010043FBF1 /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
+		185AF17E18EFCA010043FBF1 /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
+		185AF17F18EFCA010043FBF1 /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
+		185AF18018EFCA010043FBF1 /* ATMHudQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudQueueItem.h; sourceTree = "<group>"; };
+		185AF18118EFCA010043FBF1 /* ATMHudQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudQueueItem.m; sourceTree = "<group>"; };
+		185AF18218EFCA010043FBF1 /* ATMHudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudView.h; sourceTree = "<group>"; };
+		185AF18318EFCA010043FBF1 /* ATMHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudView.m; sourceTree = "<group>"; };
+		185AF18418EFCA010043FBF1 /* ATMProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMProgressLayer.h; sourceTree = "<group>"; };
+		185AF18518EFCA010043FBF1 /* ATMProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMProgressLayer.m; sourceTree = "<group>"; };
+		185AF18618EFCA010043FBF1 /* ATMSoundFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMSoundFX.h; sourceTree = "<group>"; };
+		185AF18718EFCA010043FBF1 /* ATMSoundFX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMSoundFX.m; sourceTree = "<group>"; };
+		185AF18818EFCA010043FBF1 /* ATMTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMTextLayer.h; sourceTree = "<group>"; };
+		185AF18918EFCA010043FBF1 /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMTextLayer.m; sourceTree = "<group>"; };
+		185AF19018EFCD800043FBF1 /* 19-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-check.png"; sourceTree = "<group>"; };
+		185AF19218F07B0F0043FBF1 /* XYAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAlertView.h; sourceTree = "<group>"; };
+		185AF19318F07B0F0043FBF1 /* XYAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAlertView.m; sourceTree = "<group>"; };
+		185AF19418F07B0F0043FBF1 /* XYAlertViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAlertViewHeader.h; sourceTree = "<group>"; };
+		185AF19518F07B0F0043FBF1 /* XYAlertViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAlertViewManager.h; sourceTree = "<group>"; };
+		185AF19618F07B0F0043FBF1 /* XYAlertViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAlertViewManager.m; sourceTree = "<group>"; };
+		185AF19718F07B0F0043FBF1 /* XYLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYLoadingView.h; sourceTree = "<group>"; };
+		185AF19818F07B0F0043FBF1 /* XYLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYLoadingView.m; sourceTree = "<group>"; };
+		185AF19C18F07B250043FBF1 /* alertView_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertView_bg@2x.png"; sourceTree = "<group>"; };
+		185AF19D18F07B250043FBF1 /* alertView_button_gray_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertView_button_gray_pressed@2x.png"; sourceTree = "<group>"; };
+		185AF19E18F07B250043FBF1 /* alertView_button_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertView_button_gray@2x.png"; sourceTree = "<group>"; };
+		185AF19F18F07B250043FBF1 /* alertView_button_green_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertView_button_green_pressed@2x.png"; sourceTree = "<group>"; };
+		185AF1A018F07B250043FBF1 /* alertView_button_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertView_button_green@2x.png"; sourceTree = "<group>"; };
+		185AF1A118F07B250043FBF1 /* alertView_loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertView_loading@2x.png"; sourceTree = "<group>"; };
+		185AF1A818F09C960043FBF1 /* BeaconsCollecetionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconsCollecetionData.h; sourceTree = "<group>"; };
+		185AF1A918F09C960043FBF1 /* BeaconsCollecetionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconsCollecetionData.m; sourceTree = "<group>"; };
+		1876FFE318F0D9B8008281FE /* sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound.wav; sourceTree = "<group>"; };
+		1876FFE518F0DB12008281FE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		18961B6A18DEB36000530038 /* PendulumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendulumView.h; sourceTree = "<group>"; };
 		18961B6B18DEB36000530038 /* PendulumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendulumView.m; sourceTree = "<group>"; };
 		18961B6D18E0CA2800530038 /* shopping_cart.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shopping_cart.jpg; sourceTree = "<group>"; };
@@ -214,6 +276,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1876FFE618F0DB12008281FE /* AVFoundation.framework in Frameworks */,
 				185AE2AC18D7D59600CCF3ED /* Accelerate.framework in Frameworks */,
 				185AE2AA18D7D58E00CCF3ED /* AudioToolbox.framework in Frameworks */,
 				18E1F3AB18D6AF5D006BBCF8 /* QuartzCore.framework in Frameworks */,
@@ -243,6 +306,7 @@
 		1813814918C5712100142833 = {
 			isa = PBXGroup;
 			children = (
+				185AF16918EFC7500043FBF1 /* ATMHud */,
 				189A568F18D914A8001B121A /* REMenu */,
 				185AE2C118D802D500CCF3ED /* UI Classess */,
 				185AE29A18D7CBB300CCF3ED /* Resources */,
@@ -266,6 +330,7 @@
 		1813815418C5712100142833 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1876FFE518F0DB12008281FE /* AVFoundation.framework */,
 				185AE2AB18D7D59600CCF3ED /* Accelerate.framework */,
 				185AE2A918D7D58E00CCF3ED /* AudioToolbox.framework */,
 				18E1F3AA18D6AF5D006BBCF8 /* QuartzCore.framework */,
@@ -284,6 +349,8 @@
 		1813815B18C5712100142833 /* iBeacons */ = {
 			isa = PBXGroup;
 			children = (
+				185AF1A818F09C960043FBF1 /* BeaconsCollecetionData.h */,
+				185AF1A918F09C960043FBF1 /* BeaconsCollecetionData.m */,
 				189A569C18D91AF7001B121A /* BeaconTestViewController.h */,
 				189A569D18D91AF7001B121A /* BeaconTestViewController.m */,
 				189A569F18D91B0F001B121A /* MagneticTestViewController.h */,
@@ -349,6 +416,17 @@
 		185AE29A18D7CBB300CCF3ED /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1876FFE318F0D9B8008281FE /* sound.wav */,
+				185AF19C18F07B250043FBF1 /* alertView_bg@2x.png */,
+				185AF19D18F07B250043FBF1 /* alertView_button_gray_pressed@2x.png */,
+				185AF19E18F07B250043FBF1 /* alertView_button_gray@2x.png */,
+				185AF19F18F07B250043FBF1 /* alertView_button_green_pressed@2x.png */,
+				185AF1A018F07B250043FBF1 /* alertView_button_green@2x.png */,
+				185AF1A118F07B250043FBF1 /* alertView_loading@2x.png */,
+				185AF19018EFCD800043FBF1 /* 19-check.png */,
+				185AF16318EFC2DE0043FBF1 /* snow1.png */,
+				185AF16418EFC2DE0043FBF1 /* star1.png */,
+				185AF16518EFC2DE0043FBF1 /* stars2.png */,
 				18961B6D18E0CA2800530038 /* shopping_cart.jpg */,
 				189A56A818D928AF001B121A /* 1.png */,
 				189A56A918D928AF001B121A /* 2.png */,
@@ -373,6 +451,17 @@
 		185AE2C118D802D500CCF3ED /* UI Classess */ = {
 			isa = PBXGroup;
 			children = (
+				185AF19218F07B0F0043FBF1 /* XYAlertView.h */,
+				185AF19318F07B0F0043FBF1 /* XYAlertView.m */,
+				185AF19418F07B0F0043FBF1 /* XYAlertViewHeader.h */,
+				185AF19518F07B0F0043FBF1 /* XYAlertViewManager.h */,
+				185AF19618F07B0F0043FBF1 /* XYAlertViewManager.m */,
+				185AF19718F07B0F0043FBF1 /* XYLoadingView.h */,
+				185AF19818F07B0F0043FBF1 /* XYLoadingView.m */,
+				185AF15D18EFBEA10043FBF1 /* CustomButton.h */,
+				185AF15E18EFBEA10043FBF1 /* CustomButton.m */,
+				185AF15F18EFBEA10043FBF1 /* EmitterView.h */,
+				185AF16018EFBEA10043FBF1 /* EmitterView.m */,
 				18961B6A18DEB36000530038 /* PendulumView.h */,
 				18961B6B18DEB36000530038 /* PendulumView.m */,
 				189A56A218D92871001B121A /* EAIntroPage.h */,
@@ -426,6 +515,26 @@
 			);
 			name = "UI Classess";
 			path = Classess;
+			sourceTree = "<group>";
+		};
+		185AF16918EFC7500043FBF1 /* ATMHud */ = {
+			isa = PBXGroup;
+			children = (
+				185AF17D18EFCA010043FBF1 /* ATMHud.h */,
+				185AF17E18EFCA010043FBF1 /* ATMHud.m */,
+				185AF17F18EFCA010043FBF1 /* ATMHudDelegate.h */,
+				185AF18018EFCA010043FBF1 /* ATMHudQueueItem.h */,
+				185AF18118EFCA010043FBF1 /* ATMHudQueueItem.m */,
+				185AF18218EFCA010043FBF1 /* ATMHudView.h */,
+				185AF18318EFCA010043FBF1 /* ATMHudView.m */,
+				185AF18418EFCA010043FBF1 /* ATMProgressLayer.h */,
+				185AF18518EFCA010043FBF1 /* ATMProgressLayer.m */,
+				185AF18618EFCA010043FBF1 /* ATMSoundFX.h */,
+				185AF18718EFCA010043FBF1 /* ATMSoundFX.m */,
+				185AF18818EFCA010043FBF1 /* ATMTextLayer.h */,
+				185AF18918EFCA010043FBF1 /* ATMTextLayer.m */,
+			);
+			name = ATMHud;
 			sourceTree = "<group>";
 		};
 		189A568F18D914A8001B121A /* REMenu */ = {
@@ -520,6 +629,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				185AE2B218D7E2D700CCF3ED /* ibeacon-icon.png in Resources */,
+				185AF1A218F07B250043FBF1 /* alertView_bg@2x.png in Resources */,
 				185AE2A418D7CBB300CCF3ED /* pullrefresh.aif in Resources */,
 				185AE2AE18D7D6EC00CCF3ED /* ibeacon.jpg in Resources */,
 				1813816C18C5712300142833 /* Main_iPad.storyboard in Resources */,
@@ -529,15 +639,25 @@
 				189A56B518D928AF001B121A /* supportcat@2x.png in Resources */,
 				185AE2B418D800FD00CCF3ED /* ibeacon-icon-menu.png in Resources */,
 				1813817118C5712300142833 /* Images.xcassets in Resources */,
+				185AF16718EFC2DE0043FBF1 /* star1.png in Resources */,
+				185AF19118EFCD800043FBF1 /* 19-check.png in Resources */,
+				185AF1A418F07B250043FBF1 /* alertView_button_gray@2x.png in Resources */,
+				1876FFE418F0D9B8008281FE /* sound.wav in Resources */,
+				185AF1A718F07B250043FBF1 /* alertView_loading@2x.png in Resources */,
 				185AE2A618D7CC1F00CCF3ED /* MenuBackground@2x.jpg in Resources */,
 				185AE2A018D7CBB300CCF3ED /* circle.png in Resources */,
 				189A56B318D928AF001B121A /* introBg@2x.png in Resources */,
 				189A56B218D928AF001B121A /* femalecodertocat@2x.png in Resources */,
 				1813816918C5712300142833 /* Main_iPhone.storyboard in Resources */,
 				189A56B118D928AF001B121A /* 3.png in Resources */,
+				185AF16618EFC2DE0043FBF1 /* snow1.png in Resources */,
 				185AE2A118D7CBB300CCF3ED /* circle@2x.png in Resources */,
+				185AF1A518F07B250043FBF1 /* alertView_button_green_pressed@2x.png in Resources */,
 				189A56B018D928AF001B121A /* 2.png in Resources */,
+				185AF16818EFC2DE0043FBF1 /* stars2.png in Resources */,
 				18961B6E18E0CA2800530038 /* shopping_cart.jpg in Resources */,
+				185AF1A618F07B250043FBF1 /* alertView_button_green@2x.png in Resources */,
+				185AF1A318F07B250043FBF1 /* alertView_button_gray_pressed@2x.png in Resources */,
 				1813816018C5712200142833 /* InfoPlist.strings in Resources */,
 				189A56AF18D928AF001B121A /* 1.png in Resources */,
 			);
@@ -560,12 +680,17 @@
 			files = (
 				18E1F3AE18D6BCCB006BBCF8 /* PulsingHaloLayer.m in Sources */,
 				185AE2E118D802D500CCF3ED /* PBFlatSegmentedControl.m in Sources */,
+				185AF18C18EFCA010043FBF1 /* ATMHudView.m in Sources */,
 				18961B6C18DEB36000530038 /* PendulumView.m in Sources */,
 				189A56A118D91B0F001B121A /* MagneticTestViewController.m in Sources */,
 				189A569A18D914A9001B121A /* REMenuItem.m in Sources */,
 				189A569918D914A9001B121A /* REMenuContainerView.m in Sources */,
+				185AF18D18EFCA010043FBF1 /* ATMProgressLayer.m in Sources */,
+				185AF19B18F07B0F0043FBF1 /* XYLoadingView.m in Sources */,
+				185AF19918F07B0F0043FBF1 /* XYAlertView.m in Sources */,
 				185AE2DB18D802D500CCF3ED /* PBFlatBarButtonItems.m in Sources */,
 				185AE2DD18D802D500CCF3ED /* PBFlatButtonWithIcon.m in Sources */,
+				185AF18E18EFCA010043FBF1 /* ATMSoundFX.m in Sources */,
 				185AE2E418D802D500CCF3ED /* PBIconDrawning.m in Sources */,
 				185AE2E518D802D500CCF3ED /* UIImage+Additions.m in Sources */,
 				185AE2DE18D802D500CCF3ED /* PBFlatGroupedStyleCell.m in Sources */,
@@ -578,16 +703,23 @@
 				18E1F3A518D69F68006BBCF8 /* LDProgressView.m in Sources */,
 				1813818F18C5721000142833 /* MainViewController.m in Sources */,
 				189A569B18D914A9001B121A /* REMenuItemView.m in Sources */,
+				185AF1AA18F09C960043FBF1 /* BeaconsCollecetionData.m in Sources */,
 				185AE2E318D802D500CCF3ED /* PBFlatTextfield.m in Sources */,
 				18211D1718C6ED8F005B2739 /* CostumSegue.m in Sources */,
 				18E1F3B318D6C305006BBCF8 /* CUSFlashLabel.m in Sources */,
 				185AE29718D7CB9D00CCF3ED /* XHPathCover.m in Sources */,
+				185AF19A18F07B0F0043FBF1 /* XYAlertViewManager.m in Sources */,
 				185AE2E218D802D500CCF3ED /* PBFlatSettings.m in Sources */,
+				185AF18A18EFCA010043FBF1 /* ATMHud.m in Sources */,
 				185AE2DF18D802D500CCF3ED /* PBFlatGroupedTableViewController.m in Sources */,
+				185AF18B18EFCA010043FBF1 /* ATMHudQueueItem.m in Sources */,
 				185AE2E018D802D500CCF3ED /* PBFlatRoundedImageView.m in Sources */,
+				185AF16218EFBEA10043FBF1 /* EmitterView.m in Sources */,
 				185AE2DC18D802D500CCF3ED /* PBFlatButton.m in Sources */,
+				185AF16118EFBEA10043FBF1 /* CustomButton.m in Sources */,
 				185AE29818D7CB9D00CCF3ED /* XHSoundManager.m in Sources */,
 				1813816218C5712200142833 /* main.m in Sources */,
+				185AF18F18EFCA010043FBF1 /* ATMTextLayer.m in Sources */,
 				18211D1A18C6F51B005B2739 /* MenuViewController.m in Sources */,
 				189A569E18D91AF7001B121A /* BeaconTestViewController.m in Sources */,
 				18E1F3B618D6CC3F006BBCF8 /* FXLabel.m in Sources */,

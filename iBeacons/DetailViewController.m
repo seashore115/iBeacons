@@ -103,8 +103,8 @@
         // start the compass
         [locationManager startUpdatingHeading];
     }
-    NSLog(@"%@",roomName);
-    NSLog(@"%@",uploadFloorPlanId);
+//    NSLog(@"%@",roomName);
+//    NSLog(@"%@",uploadFloorPlanId);
     //----
 
 //    CGAffineTransform sliderRotation = CGAffineTransformIdentity;
@@ -176,7 +176,7 @@
     //test
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"Test" style:UIBarButtonItemStyleBordered target:self action:@selector(showTest)];
     
-    NSLog(@"%ld",(long)count);
+//    NSLog(@"%ld",(long)count);
 }
 
 -(void)showTest
@@ -186,7 +186,7 @@
     REMenuItem *testBeacon=[[REMenuItem alloc] initWithTitle:@"Beacon Test" image:nil highlightedImage:nil action:^(REMenuItem *item){
         [self performSegueWithIdentifier:@"beacon" sender:self];
     }];
-    REMenuItem *testMagnetic=[[REMenuItem alloc] initWithTitle:@"Magnetic Test" image:nil highlightedImage:nil action:^(REMenuItem *item){
+    REMenuItem *testMagnetic=[[REMenuItem alloc] initWithTitle:@"Mutiply Record Test" image:nil highlightedImage:nil action:^(REMenuItem *item){
         [self performSegueWithIdentifier:@"magnetic" sender:self];
     }];
     testBeacon.tag=0;
@@ -212,6 +212,7 @@
         MagneticTestViewController *magneticTest=segue.destinationViewController;
         magneticTest.roomNameMagnetic=roomName;
         magneticTest.uploadFloorPlanIdMagnetic=uploadFloorPlanId;
+        magneticTest.beaconsCount=count;
     }
 }
 
@@ -225,29 +226,9 @@
     if([beacons count] > 0)
     {
         
-        if(!self.selectedBeacon)
-        {
-            // initialy pick closest beacon
-            self.selectedBeacon = [beacons objectAtIndex:0];
-        }
-        else
-        {
-            for (ESTBeacon* cBeacon in beacons)
-            {
-                // update beacon it same as selected initially
-                if([self.selectedBeacon.major unsignedShortValue] == [cBeacon.major unsignedShortValue] &&
-                   [self.selectedBeacon.minor unsignedShortValue] == [cBeacon.minor unsignedShortValue])
-                {
-                    self.selectedBeacon = cBeacon;
-                }
-            }
-        }
-        
-        
-        
         // beacon array is sorted based on distance
         // closest beacon is the first one
-         ESTBeacon *indexString=[beacons objectAtIndex:0];
+        ESTBeacon *indexString=[beacons objectAtIndex:0];
         NSString* labelText = [NSString stringWithFormat:
                                @"Major: %i, Minor: %i",
                                [indexString.major unsignedShortValue],
@@ -309,20 +290,19 @@
 }
 
 -(void)record{
-    NSLog(@"%@",xValue);
+//    NSLog(@"%@",xValue);
     //post to http://1.mccnav.appspot.com/mcc/beacons/mcc
     NSString *subUrl=@"http://1.mccnav.appspot.com/mcc/beacons/";
     NSString *url=[subUrl stringByAppendingString:uploadFloorPlanId];
-    //NSURL *dataUrl=[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
     NSURL *dataUrl=[[NSURL alloc] initWithString:url];
-    NSLog(@"%@",[dataUrl absoluteString]);
-    NSLog(@"%@",url);
+//    NSLog(@"%@",[dataUrl absoluteString]);
+//    NSLog(@"%@",url);
     NSMutableDictionary *mDict=[NSMutableDictionary dictionaryWithCapacity:4];
     NSString *id=[[uploadFloorPlanId stringByAppendingString:@"."]stringByAppendingString:roomName];
     [mDict setObject:uploadFloorPlanId forKey:@"floorplanId"];
     [mDict setObject:roomName forKey:@"locationId"];
     [mDict setObject:id forKey:@"id"];
-    NSLog(@"%@",iBeaconName.text);
+//    NSLog(@"%@",iBeaconName.text);
     NSMutableDictionary *subDict=[NSMutableDictionary dictionaryWithCapacity:2];
     NSString *identityId=[[[[[[[@"identityId:" stringByAppendingString:iBeaconName.text]stringByAppendingString:@" x:"]stringByAppendingString:xValue]stringByAppendingString:@" y:"]stringByAppendingString:yValue]stringByAppendingString:@" z:"]stringByAppendingString:zValue];
 //    NSMutableDictionary *subMinDict=[NSMutableDictionary dictionaryWithCapacity:5];

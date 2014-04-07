@@ -124,7 +124,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSLog(@"---%ld",(long)n);
+//    NSLog(@"---%ld",(long)n);
     return n;
 }
 
