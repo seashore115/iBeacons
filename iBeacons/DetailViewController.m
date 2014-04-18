@@ -292,6 +292,7 @@
 -(void)record{
 //    NSLog(@"%@",xValue);
     //post to http://1.mccnav.appspot.com/mcc/beacons/mcc
+    //http://1.mccnav.appspot.com/floorplan.editor.html#/floorplan/{floorId}
     NSString *subUrl=@"http://1.mccnav.appspot.com/mcc/beacons/";
     NSString *url=[subUrl stringByAppendingString:uploadFloorPlanId];
     NSURL *dataUrl=[[NSURL alloc] initWithString:url];

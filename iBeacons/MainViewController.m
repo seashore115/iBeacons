@@ -53,6 +53,7 @@
         MenuViewController *nameViewController;
         nameViewController=segue.destinationViewController;
         //ip:68.52.143.43
+        //http://1.mccnav.appspot.com/floorplan.editor.html#/floorplan/
         nameViewController.subUrlString=[@"http://1.mccnav.appspot.com/mcc/floorplan/" stringByAppendingString: textInputBox.text];
         nameViewController.floorPlanId=textInputBox.text;
     }

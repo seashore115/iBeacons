@@ -10,11 +10,13 @@
 #import "ATMHudDelegate.h"
 #import "BeaconsCollecetionData.h"
 #import <AVFoundation/AVAudioPlayer.h>
+#import <MessageUI/MessageUI.h>
 @class ATMHud;
 
-@interface MagneticTestViewController : UIViewController<ATMHudDelegate>{
+@interface MagneticTestViewController : UIViewController<ATMHudDelegate,MFMailComposeViewControllerDelegate>{
     ATMHud *hud;
     BeaconsCollecetionData *obj;
+    NSString *outputString;
 }
 @property (weak, nonatomic)NSString* roomNameMagnetic;
 @property (weak, nonatomic)NSString* uploadFloorPlanIdMagnetic;
@@ -24,4 +26,5 @@
 @property (nonatomic)NSInteger beaconsCount;
 @property (nonatomic, strong)NSMutableArray* sendData;
 @property (nonatomic, strong)AVAudioPlayer* theAudio;
+@property (nonatomic, retain)NSString *outputString;
 @end

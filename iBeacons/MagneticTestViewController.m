@@ -33,6 +33,7 @@
 @synthesize beaconMajorMinorDistance;
 @synthesize beaconsCount;
 @synthesize sendData;
+@synthesize outputString;
 - (void)setupBackgroundImage
 {
     CGRect          screenRect          = [[UIScreen mainScreen] bounds];
@@ -53,7 +54,10 @@
     [backgroundImage setUserInteractionEnabled:TRUE];
     CustomButton *button = [[CustomButton alloc] initWithFrame:CGRectMake(124, 400, 75, 30)];
     [button addTarget:self action:@selector(record) forControlEvents:UIControlEventTouchUpInside];
+//    CustomButton *sendMailButton=[[CustomButton alloc] initWithFrame:CGRectMake(124, 440, 75, 30)];
+//    [sendMailButton addTarget:self action:@selector(sendMail) forControlEvents:UIControlEventTouchUpInside];
     hud = [[ATMHud alloc] initWithDelegate:self];
+//    [backgroundImage addSubview:sendMailButton];
     [backgroundImage addSubview:button];
     [backgroundImage addSubview:hud.view];
     [self.view addSubview:backgroundImage];
@@ -115,7 +119,8 @@
 //    sendData=obj.sendData;
     [self setupManager];
     [self setupView];
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Check" style:UIBarButtonItemStyleBordered target:self action:@selector(displayContent)];
+     outputString=@"";
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(sendMail)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -242,75 +247,92 @@
     
     //Get Message
 //    NSLog(@"%i",[beaconArray count]);
+   
     for (ESTBeacon *beacon in beaconArray) {
         float rawDistance=[beacon.distance floatValue];
-        NSString *beaconDistance=[NSString stringWithFormat:@" Distance: %.3f",rawDistance];
-        NSString *majorAndMinor=[NSString stringWithFormat:
-                                 @"Major: %i, Minor: %i",
-                                 [beacon.major unsignedShortValue],
-                                  [beacon.minor unsignedShortValue]];
-        NSString *beaconMessage=[majorAndMinor stringByAppendingString:beaconDistance];
-        [beaconMajorMinorDistance addObject:beaconMessage];
+        outputString=[outputString stringByAppendingFormat:@"%i,%i,%.3f,%@\n",[beacon.major unsignedShortValue],[beacon.minor unsignedShortValue],rawDistance,roomNameMagnetic];
+         NSLog(@"%@",outputString);
+//        NSString *beaconDistance=[NSString stringWithFormat:@" Distance: %.3f",rawDistance];
+//        NSString *majorAndMinor=[NSString stringWithFormat:
+//                                 @"Major: %i, Minor: %i",
+//                                 [beacon.major unsignedShortValue],
+//                                  [beacon.minor unsignedShortValue]];
+//        NSString *beaconMessage=[majorAndMinor stringByAppendingString:beaconDistance];
+//        [beaconMajorMinorDistance addObject:beaconMessage];
     }
 //    NSLog(@"%@",[beaconMajorMinorDistance description]);
+   
 }
 
 -(void)writeFile{
 //    NSLog(@"%ld",(long)beaconsCount);
-        NSMutableDictionary *dictionary=[[NSMutableDictionary alloc]initWithCapacity:3];
-        [dictionary setObject:uploadFloorPlanIdMagnetic forKey:@"id"];
-        [dictionary setObject:roomNameMagnetic forKey:@"room"];
-        [dictionary setObject:beaconMajorMinorDistance forKey:@"message"];
-    
+//        NSMutableDictionary *dictionary=[[NSMutableDictionary alloc]initWithCapacity:3];
+//        [dictionary setObject:uploadFloorPlanIdMagnetic forKey:@"id"];
+//        [dictionary setObject:roomNameMagnetic forKey:@"room"];
+//        [dictionary setObject:beaconMajorMinorDistance forKey:@"message"];
+        NSLog(@"%@",outputString);
     //Read File in local
         NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString* filename=[NSString stringWithFormat:@"%@.txt",uploadFloorPlanIdMagnetic];
+        NSString* filename=[NSString stringWithFormat:@"%@.csv",uploadFloorPlanIdMagnetic];
         NSString* foofile = [documentsPath stringByAppendingPathComponent:filename];
         BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:foofile];
-        NSArray *messageArray=[NSArray arrayWithContentsOfFile:foofile];
-        sendData=[[NSMutableArray alloc]initWithCapacity:10];
-        if (fileExists) {
-            NSDictionary *dict, *dict0;
-            for (dict in messageArray) {
-//                NSLog(@"%@",[dict description]);
-                [sendData addObject:dict];
-            }
-//            NSLog(@"count is %lu",(unsigned long)[sendData count]);
-            BOOL flag=false;
-            if ([messageArray count]<beaconsCount) {
-                
-                for (int i=0; i<[sendData count] ; i++) {
-                    dict0=[sendData objectAtIndex:i];
-//                    NSLog(@"%@",[dict0 objectForKey:@"room"]);
-                    if ([roomNameMagnetic isEqualToString:[dict0 objectForKey:@"room"]]) {
-                        [sendData removeObject:dict0];
-                        flag=true;
-//                        NSLog(@"%@",[sendData description]);
-                        [sendData addObject:dictionary];
-                    }
-                }
-                
-                if (!flag) {
-//                    NSLog(@"----------");
-                    [sendData addObject:dictionary];
-                    goto end;
+        NSError *csvError = NULL;
+    if (fileExists) {
+        NSString *string=[NSString stringWithContentsOfFile:foofile encoding:NSUTF8StringEncoding error:nil];
+        outputString=[string stringByAppendingString:outputString];
+        [outputString writeToFile:foofile atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
+        NSLog(@"******%@",csvError);
+    }else{
+        outputString=[@"major,minor,distance,room\n" stringByAppendingString:outputString];
+        [outputString writeToFile:foofile atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
+         NSLog(@"----%@",csvError);
+    }
+//        NSArray *messageArray=[NSArray arrayWithContentsOfFile:foofile];
+//        sendData=[[NSMutableArray alloc]initWithCapacity:10];
+//        if (fileExists) {
+//            NSDictionary *dict, *dict0;
+//            for (dict in messageArray) {
+////                NSLog(@"%@",[dict description]);
+//                [sendData addObject:dict];
+//            }
+////            NSLog(@"count is %lu",(unsigned long)[sendData count]);
+//            BOOL flag=false;
+//            if ([messageArray count]<beaconsCount) {
+//                
+//                for (int i=0; i<[sendData count] ; i++) {
+//                    dict0=[sendData objectAtIndex:i];
+////                    NSLog(@"%@",[dict0 objectForKey:@"room"]);
+//                    if ([roomNameMagnetic isEqualToString:[dict0 objectForKey:@"room"]]) {
+//                        [sendData removeObject:dict0];
+//                        flag=true;
+////                        NSLog(@"%@",[sendData description]);
+//                        [sendData addObject:dictionary];
+//                    }
+//                }
+//                
+//                if (!flag) {
+////                    NSLog(@"----------");
+//                    [sendData addObject:dictionary];
+//                    goto end;
+//
+//                }
+//                
+//            }else{
+//                NSDictionary *dict1;
+//                for (int i=0; i< beaconsCount; i++) {
+//                    dict1=[messageArray objectAtIndex:i];
+//                    if ([roomNameMagnetic isEqualToString:[dict1 objectForKey:@"room"]]){
+//                        [sendData removeObject:dict1];
+//                        [sendData addObject:dictionary];
+//                    }
+//                }
+//            }
+//        }else{
+//            [[NSFileManager defaultManager] createFileAtPath:foofile contents:nil attributes:nil];
+//            [sendData addObject:dictionary];
+//        }end:
+    
 
-                }
-                
-            }else{
-                NSDictionary *dict1;
-                for (int i=0; i< beaconsCount; i++) {
-                    dict1=[messageArray objectAtIndex:i];
-                    if ([roomNameMagnetic isEqualToString:[dict1 objectForKey:@"room"]]){
-                        [sendData removeObject:dict1];
-                        [sendData addObject:dictionary];
-                    }
-                }
-            }
-        }else{
-            [[NSFileManager defaultManager] createFileAtPath:foofile contents:nil attributes:nil];
-            [sendData addObject:dictionary];
-        }end:
 //        if (fileExists) {
 //            NSArray *messageArray=[NSArray arrayWithContentsOfFile:foofile];
 //            NSDictionary *dict;
@@ -344,35 +366,37 @@
 //        }
     
     //Write File in local
-    [sendData writeToFile:foofile atomically:YES];
+//    [sendData writeToFile:foofile atomically:YES];
 //    NSLog(@"%@",[sendData description]);
 }
 
 -(void)displayContent{
-    // create a loading view
-    XYLoadingView *loadingView = [XYLoadingView loadingViewWithMessage:@"Loading will complete in 2 seconds..."];
+//    // create a loading view
+//    XYLoadingView *loadingView = [XYLoadingView loadingViewWithMessage:@"Loading will complete in 2 seconds..."];
+//    
+//    // display
+//    [loadingView show];
+//    
+//    // read message from file
+//    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//    NSString* filename=[NSString stringWithFormat:@"%@.csv",uploadFloorPlanIdMagnetic];
+//    NSString* foofile = [documentsPath stringByAppendingPathComponent:filename];
+//    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:foofile];
+////    NSArray *messageArray=[NSArray arrayWithContentsOfFile:foofile];
+//    NSMutableString* beaconsMessage=[[NSMutableString alloc]init];
+//    if (fileExists) {
+////        for (NSObject* obj in messageArray) {
+////            [beaconsMessage appendString:[obj description]];
+////        }
+//        beaconsMessage=[NSMutableString stringWithString: @"Message has been recorded"];
+//    }else{
+//        beaconsMessage=[NSMutableString stringWithString: @"No message has been recorded"];
+//    }
     
-    // display
-    [loadingView show];
+//    // dismiss loading view with popup message after 5 seconds
+//    [loadingView performSelector:@selector(dismissWithMessage:) withObject:beaconsMessage afterDelay:2];
     
-    // read message from file
-    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString* filename=[NSString stringWithFormat:@"%@.txt",uploadFloorPlanIdMagnetic];
-    NSString* foofile = [documentsPath stringByAppendingPathComponent:filename];
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:foofile];
-//    NSArray *messageArray=[NSArray arrayWithContentsOfFile:foofile];
-    NSMutableString* beaconsMessage=[[NSMutableString alloc]init];
-    if (fileExists) {
-//        for (NSObject* obj in messageArray) {
-//            [beaconsMessage appendString:[obj description]];
-//        }
-        beaconsMessage=[NSMutableString stringWithString: @"Message has been recorded"];
-    }else{
-        beaconsMessage=[NSMutableString stringWithString: @"No message has been recorded"];
-    }
     
-    // dismiss loading view with popup message after 5 seconds
-    [loadingView performSelector:@selector(dismissWithMessage:) withObject:beaconsMessage afterDelay:2];
 }
 
 -(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
@@ -403,7 +427,7 @@
 -(void)removeFile{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString* filename=[NSString stringWithFormat:@"%@.txt",uploadFloorPlanIdMagnetic];
+    NSString* filename=[NSString stringWithFormat:@"%@.csv",uploadFloorPlanIdMagnetic];
     NSString *filePath = [documentsPath stringByAppendingPathComponent:filename];
     NSError *error;
     BOOL success = [fileManager removeItemAtPath:filePath error:&error];
@@ -414,8 +438,60 @@
     }
     else
     {
+        
         XYShowAlert(@"No recorded message already!");
     }
+}
+
+-(void)sendMail{
+    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* filename=[NSString stringWithFormat:@"%@.csv",uploadFloorPlanIdMagnetic];
+    NSString* foofile = [documentsPath stringByAppendingPathComponent:filename];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:foofile];
+    //    NSArray *messageArray=[NSArray arrayWithContentsOfFile:foofile];
+    if (fileExists) {
+        //        for (NSObject* obj in messageArray) {
+        //            [beaconsMessage appendString:[obj description]];
+        //        }
+        NSString *emailTitle=[NSString stringWithFormat:@"%@.csv Document",uploadFloorPlanIdMagnetic];
+        NSString *messageBody=@"This document needs to be processed";
+        NSArray *toRecipents = [NSArray arrayWithObject:@"wangmeng.icarus@gmail.com"];
+        MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+        mc.mailComposeDelegate = self;
+        [mc setSubject:emailTitle];
+        [mc addAttachmentData:[NSData dataWithContentsOfFile:foofile] mimeType:@"text/csv" fileName:filename];
+        [mc setMessageBody:messageBody isHTML:NO];
+        [mc setToRecipients:toRecipents];
+        [self presentViewController:mc animated:YES completion:NULL];
+    }else{
+        XYShowAlert(@"Please record first");
+    }
+
+   
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 
