@@ -1,7 +1,7 @@
 iBeacons
 ========
 
-An app which is used to collect nearby evernote beacons message 
+An app which is used to collect nearby general beacons message 
 
 Attention:
 
