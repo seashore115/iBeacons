@@ -26,5 +26,5 @@
 @property (nonatomic)NSInteger beaconsCount;
 @property (nonatomic, strong)NSMutableArray* sendData;
 @property (nonatomic, strong)AVAudioPlayer* theAudio;
-@property (nonatomic, retain)NSString *outputString;
+@property (nonatomic, strong)NSString *outputString;
 @end

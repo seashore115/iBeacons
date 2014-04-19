@@ -111,7 +111,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+           outputString=@"";
 //    NSLog(@"%@",roomNameMagnetic);
 //    NSLog(@"%@",uploadFloorPlanIdMagnetic);
     beaconMajorMinorDistance=[NSMutableArray arrayWithCapacity:10];
@@ -119,7 +119,6 @@
 //    sendData=obj.sendData;
     [self setupManager];
     [self setupView];
-     outputString=@"";
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(sendMail)];
 }
 
@@ -247,11 +246,10 @@
     
     //Get Message
 //    NSLog(@"%i",[beaconArray count]);
-   
     for (ESTBeacon *beacon in beaconArray) {
         float rawDistance=[beacon.distance floatValue];
         outputString=[outputString stringByAppendingFormat:@"%i,%i,%.3f,%@\n",[beacon.major unsignedShortValue],[beacon.minor unsignedShortValue],rawDistance,roomNameMagnetic];
-         NSLog(@"%@",outputString);
+//         NSLog(@"%@",outputString);
 //        NSString *beaconDistance=[NSString stringWithFormat:@" Distance: %.3f",rawDistance];
 //        NSString *majorAndMinor=[NSString stringWithFormat:
 //                                 @"Major: %i, Minor: %i",
@@ -270,7 +268,7 @@
 //        [dictionary setObject:uploadFloorPlanIdMagnetic forKey:@"id"];
 //        [dictionary setObject:roomNameMagnetic forKey:@"room"];
 //        [dictionary setObject:beaconMajorMinorDistance forKey:@"message"];
-        NSLog(@"%@",outputString);
+//        NSLog(@"%@",outputString);
     //Read File in local
         NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString* filename=[NSString stringWithFormat:@"%@.csv",uploadFloorPlanIdMagnetic];
@@ -285,8 +283,9 @@
     }else{
         outputString=[@"major,minor,distance,room\n" stringByAppendingString:outputString];
         [outputString writeToFile:foofile atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
-         NSLog(@"----%@",csvError);
+        NSLog(@"----%@",csvError);
     }
+        outputString=@"";
 //        NSArray *messageArray=[NSArray arrayWithContentsOfFile:foofile];
 //        sendData=[[NSMutableArray alloc]initWithCapacity:10];
 //        if (fileExists) {
