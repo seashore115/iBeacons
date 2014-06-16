@@ -170,7 +170,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    NSLog(@"%lu",(unsigned long)beaconArray.count);
+   NSLog(@"%lu",(unsigned long)beaconArray.count);
     return self.beaconArray.count;
 }
 

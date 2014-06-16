@@ -16,7 +16,7 @@
 #define DOT_MIN_POS 120
 #define DOT_MAX_POS screenHeight - 70;
 
-@interface MagneticTestViewController ()<ESTBeaconManagerDelegate>
+@interface MagneticTestViewController ()<ESTBeaconManagerDelegate,CLLocationManagerDelegate>
 @property (nonatomic, strong) ESTBeaconManager* beaconManager;
 @property (nonatomic, strong) UIImageView*      positionDot;
 
@@ -26,6 +26,7 @@
 @end
 
 @implementation MagneticTestViewController
+@synthesize locationManager;
 @synthesize roomNameMagnetic;
 @synthesize uploadFloorPlanIdMagnetic;
 @synthesize hud;
@@ -34,6 +35,12 @@
 @synthesize beaconsCount;
 @synthesize sendData;
 @synthesize outputString;
+@synthesize xValue;
+@synthesize yValue;
+@synthesize zValue;
+@synthesize latitude;
+@synthesize longitude;
+@synthesize outputFrontString;
 - (void)setupBackgroundImage
 {
     CGRect          screenRect          = [[UIScreen mainScreen] bounds];
@@ -119,13 +126,85 @@
 //    sendData=obj.sendData;
     [self setupManager];
     [self setupView];
+    // check if the hardware has a compass
+    self.locationManager = [[CLLocationManager alloc] init] ;
+	if ([CLLocationManager headingAvailable] == NO) {
+		// No compass is available. This application cannot function without a compass,
+        // so a dialog will be displayed and no magnetic data will be measured.
+        self.locationManager = nil;
+        UIAlertView *noCompassAlert = [[UIAlertView alloc] initWithTitle:@"No Compass!" message:@"This device does not have the ability to measure magnetic fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [noCompassAlert show];
+	} else {
+        // heading service configuration
+        locationManager.headingFilter = kCLHeadingFilterNone;
+        
+        // setup delegate callbacks
+        locationManager.delegate = self;
+        
+        // start the compass
+        [locationManager startUpdatingHeading];
+        NSLog(@"1111");
+    }
+    locationManager.desiredAccuracy=kCLLocationAccuracyBest;
+    [locationManager startUpdatingLocation];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(sendMail)];
+    //arff document
+    NSString *subUrlString, *roomString, *roomAllString, *outputRoomString;
+    subUrlString=@"";
+    roomString=@"";
+    roomAllString=@"";
+    outputRoomString=@"";
+    subUrlString=[@"http://1.mccnav.appspot.com/mcc/floorplan/" stringByAppendingString: uploadFloorPlanIdMagnetic];
+    NSData *allLocationData=[[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:subUrlString]];
+    NSError *error;
+    NSMutableDictionary *allLocation = [NSJSONSerialization
+                                        JSONObjectWithData:allLocationData
+                                        options:kNilOptions
+                                        error:&error];
+    if( error )
+    {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+    else {
+        NSArray *locations = allLocation[@"locations"];
+        int count=0;
+        NSDictionary *location;
+        for ( location in locations )
+        {
+            count++;
+        }
+        for(int i=0; i<count; ++i){
+            roomString=[roomString stringByAppendingString: [[locations objectAtIndex:i]valueForKey:@"id"]];
+            if(i<count-1)
+                roomString=[roomString stringByAppendingString: @","];
+        }
+    }
+    NSLog(@"index:%@",roomString);
+    roomAllString=[[@"{" stringByAppendingString: roomString] stringByAppendingString: @"}\n"];
+    NSLog(@"index:%@",roomAllString);
+    outputFrontString=@"";
+    outputFrontString=[[@"@relation " stringByAppendingString: uploadFloorPlanIdMagnetic] stringByAppendingString: @"\n\n"];
+    outputFrontString=[outputFrontString stringByAppendingString: @"@attribute major numeric\n@attribute minor numeric\n@attribute distance numeric\n"];
+    outputRoomString=[@"@attribute room " stringByAppendingString: roomAllString];
+    outputFrontString=[outputFrontString stringByAppendingString: outputRoomString];
+    outputFrontString=[[[[[outputFrontString  stringByAppendingString:@"@attribute x numeric\n"] stringByAppendingString: @"@attribute y numeric\n"] stringByAppendingString: @"@attribute z numeric\n"] stringByAppendingString: @"@attribute latitude numeric\n"] stringByAppendingString:@"@attribute longitude numeric\n\n@data\n"];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
+    xValue=[NSString stringWithFormat:@"%.1f", newHeading.x];
+    yValue=[NSString stringWithFormat:@"%.1f", newHeading.y];
+    zValue=[NSString stringWithFormat:@"%.1f", newHeading.z];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    latitude=[NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
+    longitude=[NSString stringWithFormat:@"%f",locationManager.location.coordinate.longitude];
 }
 
 -(void)beaconManager:(ESTBeaconManager *)manager
@@ -248,7 +327,7 @@
 //    NSLog(@"%i",[beaconArray count]);
     for (ESTBeacon *beacon in beaconArray) {
         float rawDistance=[beacon.distance floatValue];
-        outputString=[outputString stringByAppendingFormat:@"%i,%i,%.3f,%@\n",[beacon.major unsignedShortValue],[beacon.minor unsignedShortValue],rawDistance,roomNameMagnetic];
+        outputString=[outputString stringByAppendingFormat:@"%i,%i,%.3f,%@,%@,%@,%@,%@,%@\n",[beacon.major unsignedShortValue],[beacon.minor unsignedShortValue],rawDistance,roomNameMagnetic,xValue,yValue,zValue,latitude,longitude];
 //         NSLog(@"%@",outputString);
 //        NSString *beaconDistance=[NSString stringWithFormat:@" Distance: %.3f",rawDistance];
 //        NSString *majorAndMinor=[NSString stringWithFormat:
@@ -268,10 +347,12 @@
 //        [dictionary setObject:uploadFloorPlanIdMagnetic forKey:@"id"];
 //        [dictionary setObject:roomNameMagnetic forKey:@"room"];
 //        [dictionary setObject:beaconMajorMinorDistance forKey:@"message"];
-//        NSLog(@"%@",outputString);
+        NSLog(@"----%@",outputString);
+
+    
     //Read File in local
         NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString* filename=[NSString stringWithFormat:@"%@.csv",uploadFloorPlanIdMagnetic];
+        NSString* filename=[NSString stringWithFormat:@"%@.arff",uploadFloorPlanIdMagnetic];
         NSString* foofile = [documentsPath stringByAppendingPathComponent:filename];
         BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:foofile];
         NSError *csvError = NULL;
@@ -281,7 +362,9 @@
         [outputString writeToFile:foofile atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
         NSLog(@"******%@",csvError);
     }else{
-        outputString=[@"major,minor,distance,room\n" stringByAppendingString:outputString];
+        outputString=[outputFrontString stringByAppendingString:outputString];
+//        outputString=[@"major,minor,distance,room,x,y,z,latitude,longitude\n" stringByAppendingString:outputString];
+        NSLog(@"%@",outputString);
         [outputString writeToFile:foofile atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
         NSLog(@"----%@",csvError);
     }

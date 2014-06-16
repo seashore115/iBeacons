@@ -14,6 +14,7 @@
 #import "CUSFlashLabel.h"
 #import "BeaconTestViewController.h"
 #import "MagneticTestViewController.h"
+#import "NavigationViewController.h"
 
 
 
@@ -183,15 +184,19 @@
 {
     if (_test.isOpen)
         return [_test close];
-    REMenuItem *testBeacon=[[REMenuItem alloc] initWithTitle:@"Beacon Test" image:nil highlightedImage:nil action:^(REMenuItem *item){
+    REMenuItem *testBeacon=[[REMenuItem alloc] initWithTitle:@"Nearby Beacon Test" image:nil highlightedImage:nil action:^(REMenuItem *item){
         [self performSegueWithIdentifier:@"beacon" sender:self];
     }];
-    REMenuItem *testMagnetic=[[REMenuItem alloc] initWithTitle:@"Mutiply Record Test" image:nil highlightedImage:nil action:^(REMenuItem *item){
+    REMenuItem *testMagnetic=[[REMenuItem alloc] initWithTitle:@"Mutiply Record Collection" image:nil highlightedImage:nil action:^(REMenuItem *item){
         [self performSegueWithIdentifier:@"magnetic" sender:self];
+    }];
+    REMenuItem *testNavigation=[[REMenuItem alloc] initWithTitle:@"Navigation Test" image:nil highlightedImage:nil action:^(REMenuItem *item){
+        [self performSegueWithIdentifier:@"navigation" sender:self];
     }];
     testBeacon.tag=0;
     testMagnetic.tag=1;
-    _test = [[REMenu alloc] initWithItems:@[testBeacon,testMagnetic]];
+    testNavigation.tag=2;
+    _test = [[REMenu alloc] initWithItems:@[testBeacon,testMagnetic,testNavigation]];
     _test.cornerRadius = 4;
     _test.shadowColor = [UIColor blackColor];
     _test.shadowOffset = CGSizeMake(0, 1);
@@ -213,6 +218,9 @@
         magneticTest.roomNameMagnetic=roomName;
         magneticTest.uploadFloorPlanIdMagnetic=uploadFloorPlanId;
         magneticTest.beaconsCount=count;
+    }else if ([segue.identifier isEqualToString:@"navigation"]){
+        NavigationViewController *navigationTest;
+        navigationTest= segue.destinationViewController;
     }
 }
 

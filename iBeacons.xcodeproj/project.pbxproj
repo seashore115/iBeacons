@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1800FC61193E143400C7AA81 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1800FC60193E143400C7AA81 /* NavigationViewController.m */; };
+		1800FC64193E1EC400C7AA81 /* MRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1800FC63193E1EC400C7AA81 /* MRoundedButton.m */; };
+		1800FC6A193E1F7C00C7AA81 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 1800FC67193E1F7C00C7AA81 /* UIImage+ImageEffects.m */; };
+		1800FC6B193E1F7C00C7AA81 /* UIImageView+LBBlurredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1800FC69193E1F7C00C7AA81 /* UIImageView+LBBlurredImage.m */; };
+		1800FC6D193E294C00C7AA81 /* mcc.png in Resources */ = {isa = PBXBuildFile; fileRef = 1800FC6C193E294C00C7AA81 /* mcc.png */; };
 		1813815618C5712100142833 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1813815518C5712100142833 /* Foundation.framework */; };
 		1813815818C5712100142833 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1813815718C5712100142833 /* CoreGraphics.framework */; };
 		1813815A18C5712100142833 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1813815918C5712100142833 /* UIKit.framework */; };
@@ -117,6 +122,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1800FC5F193E143300C7AA81 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
+		1800FC60193E143400C7AA81 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
+		1800FC62193E1EC400C7AA81 /* MRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRoundedButton.h; sourceTree = "<group>"; };
+		1800FC63193E1EC400C7AA81 /* MRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRoundedButton.m; sourceTree = "<group>"; };
+		1800FC66193E1F7C00C7AA81 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		1800FC67193E1F7C00C7AA81 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		1800FC68193E1F7C00C7AA81 /* UIImageView+LBBlurredImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LBBlurredImage.h"; sourceTree = "<group>"; };
+		1800FC69193E1F7C00C7AA81 /* UIImageView+LBBlurredImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LBBlurredImage.m"; sourceTree = "<group>"; };
+		1800FC6C193E294C00C7AA81 /* mcc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mcc.png; sourceTree = "<group>"; };
 		1813815218C5712100142833 /* iBeacons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBeacons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1813815518C5712100142833 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1813815718C5712100142833 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -306,9 +320,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1800FC65193E1F7C00C7AA81 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				1800FC66193E1F7C00C7AA81 /* UIImage+ImageEffects.h */,
+				1800FC67193E1F7C00C7AA81 /* UIImage+ImageEffects.m */,
+				1800FC68193E1F7C00C7AA81 /* UIImageView+LBBlurredImage.h */,
+				1800FC69193E1F7C00C7AA81 /* UIImageView+LBBlurredImage.m */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
 		1813814918C5712100142833 = {
 			isa = PBXGroup;
 			children = (
+				1800FC65193E1F7C00C7AA81 /* Vendors */,
 				185AF16918EFC7500043FBF1 /* ATMHud */,
 				189A568F18D914A8001B121A /* REMenu */,
 				185AE2C118D802D500CCF3ED /* UI Classess */,
@@ -365,6 +391,8 @@
 				1813818E18C5721000142833 /* MainViewController.m */,
 				18211D1E18C7CAFB005B2739 /* DetailViewController.h */,
 				18211D1F18C7CAFB005B2739 /* DetailViewController.m */,
+				1800FC5F193E143300C7AA81 /* NavigationViewController.h */,
+				1800FC60193E143400C7AA81 /* NavigationViewController.m */,
 				1813816718C5712300142833 /* Main_iPhone.storyboard */,
 				1813816A18C5712300142833 /* Main_iPad.storyboard */,
 				1813817018C5712300142833 /* Images.xcassets */,
@@ -420,6 +448,7 @@
 		185AE29A18D7CBB300CCF3ED /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1800FC6C193E294C00C7AA81 /* mcc.png */,
 				1876FFE318F0D9B8008281FE /* sound.wav */,
 				185AF19C18F07B250043FBF1 /* alertView_bg@2x.png */,
 				185AF19D18F07B250043FBF1 /* alertView_button_gray_pressed@2x.png */,
@@ -455,6 +484,8 @@
 		185AE2C118D802D500CCF3ED /* UI Classess */ = {
 			isa = PBXGroup;
 			children = (
+				1800FC62193E1EC400C7AA81 /* MRoundedButton.h */,
+				1800FC63193E1EC400C7AA81 /* MRoundedButton.m */,
 				185AF19218F07B0F0043FBF1 /* XYAlertView.h */,
 				185AF19318F07B0F0043FBF1 /* XYAlertView.m */,
 				185AF19418F07B0F0043FBF1 /* XYAlertViewHeader.h */,
@@ -638,6 +669,7 @@
 				185AE2AE18D7D6EC00CCF3ED /* ibeacon.jpg in Resources */,
 				1813816C18C5712300142833 /* Main_iPad.storyboard in Resources */,
 				189A56B418D928AF001B121A /* original@2x.png in Resources */,
+				1800FC6D193E294C00C7AA81 /* mcc.png in Resources */,
 				185AE2A818D7D2B200CCF3ED /* icon.png in Resources */,
 				185AE2E718D803B000CCF3ED /* estimote1_icon.png in Resources */,
 				189A56B518D928AF001B121A /* supportcat@2x.png in Resources */,
@@ -685,6 +717,7 @@
 				18E1F3AE18D6BCCB006BBCF8 /* PulsingHaloLayer.m in Sources */,
 				185AE2E118D802D500CCF3ED /* PBFlatSegmentedControl.m in Sources */,
 				185AF18C18EFCA010043FBF1 /* ATMHudView.m in Sources */,
+				1800FC6B193E1F7C00C7AA81 /* UIImageView+LBBlurredImage.m in Sources */,
 				18961B6C18DEB36000530038 /* PendulumView.m in Sources */,
 				189A56A118D91B0F001B121A /* MagneticTestViewController.m in Sources */,
 				189A569A18D914A9001B121A /* REMenuItem.m in Sources */,
@@ -698,6 +731,7 @@
 				185AE2E418D802D500CCF3ED /* PBIconDrawning.m in Sources */,
 				185AE2E518D802D500CCF3ED /* UIImage+Additions.m in Sources */,
 				185AE2DE18D802D500CCF3ED /* PBFlatGroupedStyleCell.m in Sources */,
+				1800FC61193E143400C7AA81 /* NavigationViewController.m in Sources */,
 				189A569818D914A9001B121A /* REMenu.m in Sources */,
 				189A56A618D92871001B121A /* EAIntroPage.m in Sources */,
 				1813816618C5712200142833 /* AppDelegate.m in Sources */,
@@ -706,6 +740,7 @@
 				18E1F3A618D69F68006BBCF8 /* UIColor+RGBValues.m in Sources */,
 				18E1F3A518D69F68006BBCF8 /* LDProgressView.m in Sources */,
 				1813818F18C5721000142833 /* MainViewController.m in Sources */,
+				1800FC64193E1EC400C7AA81 /* MRoundedButton.m in Sources */,
 				189A569B18D914A9001B121A /* REMenuItemView.m in Sources */,
 				185AF1AA18F09C960043FBF1 /* BeaconsCollecetionData.m in Sources */,
 				185AE2E318D802D500CCF3ED /* PBFlatTextfield.m in Sources */,
@@ -730,6 +765,7 @@
 				185AE29918D7CB9D00CCF3ED /* XHWaterDropRefresh.m in Sources */,
 				18211D2018C7CAFB005B2739 /* DetailViewController.m in Sources */,
 				189A56A718D92871001B121A /* EAIntroView.m in Sources */,
+				1800FC6A193E1F7C00C7AA81 /* UIImage+ImageEffects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
