@@ -9,14 +9,24 @@
 #import "BeaconsCollecetionData.h"
 
 @implementation BeaconsCollecetionData
-+(BeaconsCollecetionData *)getInstance{
+
+@synthesize currentRoomName;
+@synthesize floorPlan;
++ (instancetype) sharedManager {
+    static BeaconsCollecetionData *sharedMyManager = nil;
     static dispatch_once_t onceToken;
-    static BeaconsCollecetionData* instance=nil;
-    static NSMutableArray* sendData;
-    dispatch_once(&onceToken,^{
-        instance=[[self alloc]init];
-        sendData=[[NSMutableArray alloc]init];
+    dispatch_once(&onceToken, ^{
+        sharedMyManager = [self new];
     });
-    return instance;
+    return sharedMyManager;
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        floorPlan=@"";
+        currentRoomName=@"";
+    }
+    return self;
 }
 @end

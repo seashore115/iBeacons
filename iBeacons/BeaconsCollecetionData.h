@@ -8,7 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BeaconsCollecetionData : NSObject
-@property(nonatomic, retain)NSMutableArray *sendData;
-+(BeaconsCollecetionData*)getInstance;
+@interface BeaconsCollecetionData : NSObject{
+
+NSString *floorPlan;
+NSString *currentRoomName;
+}
+
+@property (nonatomic,copy) NSString* floorPlan;
+@property (nonatomic,copy) NSString* currentRoomName;
+
++(instancetype) sharedManager;
 @end

@@ -9,6 +9,7 @@
 #import "MenuViewController.h"
 #import "DetailViewController.h"
 #import "XHPathCover.h"
+#import "BeaconsCollecetionData.h"
 @interface MenuViewController ()
 @property NSMutableArray *allLoctionInTableView;
 @property NSInteger n;
@@ -232,6 +233,7 @@
             
             self.titleChoose=[[locations objectAtIndex:indexPath.row]valueForKey:@"id"];
             NSLog(@"index:%@",titleChoose);
+            [BeaconsCollecetionData sharedManager].currentRoomName=titleChoose;
             
         }
         DetailViewController *detail=segue.destinationViewController;

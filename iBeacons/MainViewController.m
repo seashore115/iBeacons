@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "BeaconsCollecetionData.h"
 #pragma mark UIKeyboard handling
 
 #define kMin 150
@@ -54,6 +55,7 @@
         nameViewController=segue.destinationViewController;
         //ip:68.52.143.43
         //http://1.mccnav.appspot.com/floorplan.editor.html#/floorplan/
+        [BeaconsCollecetionData sharedManager].floorPlan=textInputBox.text;
         nameViewController.subUrlString=[@"http://1.mccnav.appspot.com/mcc/floorplan/" stringByAppendingString: textInputBox.text];
         nameViewController.floorPlanId=textInputBox.text;
     }
@@ -125,6 +127,11 @@
                                                  name:UIKeyboardWillShowNotification object:self.view.window];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification object:self.view.window];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
