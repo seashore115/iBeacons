@@ -46,6 +46,8 @@
 @synthesize time;
 
 
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -61,6 +63,9 @@
     // Do any additional setup after loading the view.
     //count
     count=0;
+    
+    
+    
     
    //device Id
     UIDeviceHardware *h=[[UIDeviceHardware alloc]init];
@@ -191,47 +196,48 @@
 
 
 -(void)dataInRecording{
-    NSMutableArray *beaconMessageArray=[[NSMutableArray alloc]initWithCapacity:1000000000];
-    NSMutableDictionary *beaconMessageDictionary=[[NSMutableDictionary alloc]initWithCapacity:100];
-    NSMutableDictionary *dataInMessage=[[NSMutableDictionary alloc] initWithCapacity:1000000000];
+   
+    NSMutableArray *beaconMessageArray=[[NSMutableArray alloc]initWithCapacity:10000];
+    NSMutableDictionary *dataInMessage=[[NSMutableDictionary alloc] initWithCapacity:30];
     NSMutableDictionary *gps=[[NSMutableDictionary alloc]initWithCapacity:10];
     NSMutableDictionary *magnetic=[[NSMutableDictionary alloc]initWithCapacity:20];
-    
+     NSString * beaconDistance=@"";
     //play
-    for (ESTBeacon *beacon in beaconArray) {
-        [beaconMessageDictionary setObject:[NSString stringWithFormat:
-                                            @"%i",
-                                            [beacon.major unsignedShortValue]] forKey:@"m"];
-        [beaconMessageDictionary setObject:[NSString stringWithFormat:
-                                            @"%i",
-                                            [beacon.minor unsignedShortValue]] forKey:@"n"];
-        [beaconMessageDictionary setObject:[NSString stringWithFormat:
-                                            @"%.3f",
-                                            [beacon.distance floatValue]]  forKey:@"d"];
-        [beaconMessageArray addObject:beaconMessageDictionary];
-        [dataInMessage setObject:beaconMessageArray forKey:@"beacons"];
-        [gps setObject:longitude forKey:@"lon"];
-        [gps setObject:latitude forKey:@"lat"];
-        [dataInMessage setObject:gps forKey:@"gps"];
-        [magnetic setObject:xValue forKey:@"x"];
-        [magnetic setObject:yValue forKey:@"y"];
-        [magnetic setObject:zValue forKey:@"z"];
-        [dataInMessage setObject:magnetic forKey:@"mag"];
-        [data addObject:dataInMessage];
-        ++count;
+    for (int i=0; i<beaconArray.count ;++i) {
+        NSMutableDictionary *beaconMessageDictionary=[[NSMutableDictionary alloc]init];
+        ESTBeacon *beacon=[beaconArray objectAtIndex:i];
+        beaconDistance= [NSString stringWithFormat:@"%.3f",[[beacon.distance stringValue] floatValue]];
+        [beaconMessageDictionary setObject:[NSNumber numberWithInt:[beacon.major intValue]] forKey:@"m"];
+        [beaconMessageDictionary setObject:[NSNumber numberWithInt:[beacon.minor intValue]] forKey:@"n"];
+        [beaconMessageDictionary setObject:[NSNumber numberWithFloat:[beaconDistance floatValue ]]  forKey:@"d"];
+        [beaconMessageArray addObject: beaconMessageDictionary];
+        NSLog(@"######%@\n\n",beaconMessageArray);
     }
+    [dataInMessage setObject:beaconMessageArray forKey:@"beacons"];
+    [gps setObject:[NSNumber numberWithFloat:[longitude floatValue]] forKey:@"lon"];
+    [gps setObject:[NSNumber numberWithFloat:[latitude floatValue]] forKey:@"lat"];
+    [dataInMessage setObject:gps forKey:@"gps"];
+    [magnetic setObject:[NSNumber numberWithFloat:[xValue floatValue]] forKey:@"x"];
+    [magnetic setObject:[NSNumber numberWithFloat:[yValue floatValue]]forKey:@"y"];
+    [magnetic setObject:[NSNumber numberWithFloat:[zValue floatValue]] forKey:@"z"];
+    [dataInMessage setObject:magnetic forKey:@"mag"];
+    [data addObject:dataInMessage];
+    NSLog(@"------++%@\n\n",dataInMessage);
+    NSLog(@"++++++-----%@\n\n",data);
+    ++count;
 
 }
 
 -(void)sendData{
     //timestamp
-    timeStamp= [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] * 1000];
+    timeStamp= [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] * 1000];
     NSMutableDictionary *dictionary=[[NSMutableDictionary alloc]initWithCapacity:10000000];
     [dictionary setObject:[[BeaconsCollecetionData sharedManager] floorPlan] forKey:@"floorplanId"];
     [dictionary setObject:[[BeaconsCollecetionData sharedManager] currentRoomName] forKey:@"locationId"];
     [dictionary setObject:deviceId forKey:@"deviceType"];
-    [dictionary setObject:timeStamp forKey:@"timestamp"];
+    [dictionary setObject:[NSNumber numberWithInt:[timeStamp intValue]] forKey:@"timestamp"];
     [dictionary setObject:data forKey:@"data"];
+
     
 //    NSMutableArray *array=[[NSMutableArray alloc]initWithCapacity:10];
 //    [array addObject:dictionary];

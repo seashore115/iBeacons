@@ -40,4 +40,7 @@
 @property (nonatomic, copy)NSArray*  beaconArray;
 @property (nonatomic)NSInteger count;
 @property (nonatomic,strong)NSTimer *time;
+
+
+
 @end
