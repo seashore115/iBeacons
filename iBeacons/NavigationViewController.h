@@ -40,7 +40,9 @@
 @property (nonatomic, copy)NSArray*  beaconArray;
 @property (nonatomic)NSInteger count;
 @property (nonatomic,strong)NSTimer *time;
-
+@property (strong, nonatomic) IBOutlet UIButton *showResult;
+@property (nonatomic) BOOL uploadFlag;
+@property (nonatomic) BOOL predictFlag;
 
 
 @end

@@ -355,6 +355,7 @@
                         <outlet property="countLabel" destination="TS6-Nh-DIk" id="1e2-We-ggg"/>
                         <outlet property="mapView" destination="Hwk-al-dcT" id="hrI-zv-5s6"/>
                         <outlet property="scan" destination="UBh-Ci-p1f" id="c9U-9C-14z"/>
+                        <outlet property="showResult" destination="7MW-hu-Kqe" id="ykP-pL-YfS"/>
                         <outlet property="uploadButton" destination="1Ev-eg-3tT" id="GJu-pZ-Nbn"/>
                     </connections>
                 </viewController>

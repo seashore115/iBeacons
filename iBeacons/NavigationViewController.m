@@ -44,6 +44,8 @@
 @synthesize beaconArray;
 @synthesize count;
 @synthesize time;
+@synthesize uploadFlag;
+@synthesize predictFlag;
 
 
 
@@ -64,8 +66,9 @@
     //count
     count=0;
     
-    
-    
+    //flag
+    uploadFlag=NO;
+    predictFlag=NO;
     
    //device Id
     UIDeviceHardware *h=[[UIDeviceHardware alloc]init];
@@ -83,6 +86,8 @@
     [self.scan addTarget:self action:@selector(recordData:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.uploadButton addTarget:self action:@selector(sendData) forControlEvents:UIControlEventTouchUpInside];
+    [self.showResult addTarget:self action:@selector(getPreidictResult) forControlEvents:UIControlEventTouchUpInside];
+    
     
     //label
     self.BeaconsLabel.text=@"0";
@@ -258,6 +263,7 @@
         [request setDelegate:self];
         [request setFile:foofile forKey:@"file"];
         [request startAsynchronous];
+        uploadFlag=YES;
         
     }
 }
@@ -266,8 +272,17 @@
 {
     NSLog(@"Error %@", [request error]);
     if ([request error]) {
-        XYShowAlert(@"Upload file fails");
-        return;
+        if (uploadFlag) {
+            XYShowAlert(@"Upload file fails");
+            return;
+            uploadFlag=!uploadFlag;
+        }
+        if (predictFlag) {
+            XYShowAlert(@"Predict fails");
+            return;
+            predictFlag=!predictFlag;
+        }
+
         
     }
 }
@@ -277,10 +292,61 @@
     // Use when fetching text data
     NSString *responseString = [request responseString];
     NSLog(@"%@",responseString);
-    NSLog(@"%i",count);
-    XYShowAlert(@"Upload file succeeds");
+    NSLog(@"%li",(long)count);
+    if (uploadFlag) {
+        XYShowAlert(@"Upload file succeeds");
+        uploadFlag=NO;
+    }
+    if (predictFlag) {
+        XYShowAlert(@"Wait a moment");
+        predictFlag=NO;
+    }
+    
 }
 
+
+-(void)getPreidictResult{
+    NSMutableArray *beaconMessageArray=[[NSMutableArray alloc]initWithCapacity:10000];
+    NSMutableDictionary *dataInMessage=[[NSMutableDictionary alloc] initWithCapacity:30];
+    NSMutableDictionary *gps=[[NSMutableDictionary alloc]initWithCapacity:10];
+    NSMutableDictionary *magnetic=[[NSMutableDictionary alloc]initWithCapacity:20];
+    NSString * beaconDistance=@"";
+    //play
+    for (int i=0; i<beaconArray.count ;++i) {
+        NSMutableDictionary *beaconMessageDictionary=[[NSMutableDictionary alloc]init];
+        ESTBeacon *beacon=[beaconArray objectAtIndex:i];
+        beaconDistance= [NSString stringWithFormat:@"%.3f",[[beacon.distance stringValue] floatValue]];
+        [beaconMessageDictionary setObject:[NSNumber numberWithInt:[beacon.major intValue]] forKey:@"m"];
+        [beaconMessageDictionary setObject:[NSNumber numberWithInt:[beacon.minor intValue]] forKey:@"n"];
+        [beaconMessageDictionary setObject:[NSNumber numberWithFloat:[beaconDistance floatValue ]]  forKey:@"d"];
+        [beaconMessageArray addObject: beaconMessageDictionary];
+    }
+    [dataInMessage setObject:beaconMessageArray forKey:@"beacons"];
+    [gps setObject:[NSNumber numberWithFloat:[longitude floatValue]] forKey:@"lon"];
+    [gps setObject:[NSNumber numberWithFloat:[latitude floatValue]] forKey:@"lat"];
+    [dataInMessage setObject:gps forKey:@"gps"];
+    [magnetic setObject:[NSNumber numberWithFloat:[xValue floatValue]] forKey:@"x"];
+    [magnetic setObject:[NSNumber numberWithFloat:[yValue floatValue]]forKey:@"y"];
+    [magnetic setObject:[NSNumber numberWithFloat:[zValue floatValue]] forKey:@"z"];
+    [dataInMessage setObject:magnetic forKey:@"mag"];
+    
+    NSString *urlString=[NSString stringWithFormat:@"http://inav.zii.io/inav/predict/%@",floorPlanId] ;
+    NSURL *dataUrl=[[NSURL alloc] initWithString:urlString];
+    if ([NSJSONSerialization isValidJSONObject:dataInMessage]) {
+        NSError *error;
+        //NSLog(@"1");
+        NSData *jsonData=[NSJSONSerialization dataWithJSONObject:dataInMessage options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *json=[[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        //NSLog(@"%@",json);
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:dataUrl];
+        [request setDelegate:self];
+        [request setPostValue:json forKey:@"input"];
+        [request startAsynchronous];
+        predictFlag=YES;
+    }
+
+
+}
 
 
 /*
