@@ -13,6 +13,7 @@
 #import "BeaconsCollecetionData.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
+#import "XYAlertViewHeader.h"
 
 @interface NavigationViewController ()<ESTBeaconDelegate,CLLocationManagerDelegate>
 @property (nonatomic,strong) ESTBeaconManager* beaconManager;
@@ -41,6 +42,9 @@
 @synthesize DistanceLabel;
 @synthesize NameLabel;
 @synthesize beaconArray;
+@synthesize count;
+@synthesize time;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,6 +59,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //count
+    count=0;
+    
    //device Id
     UIDeviceHardware *h=[[UIDeviceHardware alloc]init];
     deviceId=[h platformString];
@@ -76,6 +83,7 @@
     self.BeaconsLabel.text=@"0";
     self.NameLabel.text=@"unKnown";
     self.DistanceLabel.text=@"unKnown";
+    self.countLabel.text=@"0";
     
     
     //map
@@ -108,7 +116,6 @@
         
         // start the compass
         [locationManager startUpdatingHeading];
-        NSLog(@"1111");
     }
     locationManager.desiredAccuracy=kCLLocationAccuracyBest;
     [locationManager startUpdatingLocation];
@@ -123,14 +130,15 @@
     {
         // based on observation rssi is not getting bigger then -30
         // so it changes from -30 to -100 so we normalize
-        self.BeaconsLabel.text = [NSString stringWithFormat:@"%i",[beacons count]];
+        self.BeaconsLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)[beacons count]];
         ESTBeacon *indexString=[beacons objectAtIndex:0];
         self.NameLabel.text= [NSString stringWithFormat:
                                @" %i - %i",
                                [indexString.major unsignedShortValue],
                                [indexString.minor unsignedShortValue]];
         float rawDistance=[indexString.distance floatValue];
-        self.DistanceLabel.text= [NSString stringWithFormat:@"%.3f",rawDistance];
+        self.DistanceLabel.text= [NSString stringWithFormat:@"%.3f m",rawDistance];
+        self.countLabel.text=[NSString stringWithFormat:@"%li",(long)count];
         beaconArray=beacons;
     }
 }
@@ -171,11 +179,12 @@
 -(void)recordData :(UIButton*) sender{
     if (sender.selected) {
         //pause
-        ;
+        [time invalidate];
     }else{
-        for (int i=0; i<100; ++i) {
-            [self performSelector:@selector(dataInRecording) withObject:nil afterDelay:0.5];
-        }
+        time = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(dataInRecording) userInfo:nil repeats:YES];
+//        for (int i=0; i<100; ++i) {
+//            [self performSelector:@selector(dataInRecording) withObject:nil afterDelay:1.0];
+//        }
     }
     sender.selected=!sender.selected;
 }
@@ -209,8 +218,7 @@
         [magnetic setObject:zValue forKey:@"z"];
         [dataInMessage setObject:magnetic forKey:@"mag"];
         [data addObject:dataInMessage];
-        
-        
+        ++count;
     }
 
 }
@@ -246,137 +254,13 @@
         [request startAsynchronous];
         
     }
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        NSString *json=[[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
-//        NSString *reqData=[@"file=" stringByAppendingString:json];
-//        //NSLog(@"%@",reqData);
-//        NSData *postDatas=[reqData dataUsingEncoding:NSUTF8StringEncoding];
-//        NSString *postLength=[NSString stringWithFormat:@"%lu",(unsigned long)[postDatas length]];
-//        NSMutableURLRequest *requestPost=[NSMutableURLRequest requestWithURL:dataUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
-        //NSLog(@"%@",dataUrl);
-        
-//        NSString *boundary = @"YOUR_BOUNDARY_STRING";
-//        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-//        [requestPost addValue:contentType forHTTPHeaderField:@"Content-Type"];
-//        [requestPost setHTTPMethod:@"POST"];
-//        NSMutableData *somebody = [NSMutableData data];
-//        [somebody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//        [somebody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\" filename=\"%@\"\r\n\r\n",foofile ] dataUsingEncoding:NSUTF8StringEncoding]];
-//        [somebody appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-//        [somebody appendData:[NSData dataWithData:fileData]];
-//        [somebody appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-//        
-//        // close form
-//        [somebody appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//        [requestPost setHTTPBody:somebody];
-        
-//        [requestPost setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//        [requestPost setHTTPMethod:@"POST"];
-//        [requestPost setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//        [requestPost setHTTPBody:postDatas];
-//        NSLog(@"%@",[[NSString alloc] initWithData:postDatas encoding:NSASCIIStringEncoding]);
-        
-//        NSError *requestError;
-//        NSURLResponse *response = nil;
-//        [NSURLConnection sendSynchronousRequest:requestPost returningResponse:&response error:&requestError];
-//        if (requestError == nil) {
-//            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-//                NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-//                if (statusCode != 200) {
-//                    NSLog(@"Warning, status code of response was not 200, it was %ld", (long)statusCode);
-//                }
-//            
-//            }
-//        } else {
-//            NSLog(@"NSURLConnection sendSynchronousRequest error: %@", requestError);
-//        }
-//}
-//        NSMutableURLRequest *myMedRequest = [NSMutableURLRequest requestWithURL:dataUrl];
-//        [myMedRequest setHTTPMethod:@"POST"];
-//        
-//        // Add HTTP header info
-//        // Note: POST boundaries are described here: http://www.vivtek.com/rfc1867.html
-//        // and here http://www.w3.org/TR/html4/interact/forms.html
-//        NSString *POSTBoundary = @"0xKhTmLbOuNdArY";
-//        [myMedRequest addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@\r\n", POSTBoundary] forHTTPHeaderField:@"Content-Type"];
-//        
-//        // Add HTTP Body
-//        NSMutableData *POSTBody = [NSMutableData data];
-//        [POSTBody appendData:[[NSString stringWithFormat:@"--%@\r\n",POSTBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//        
-//        // Add Key/Values to the Body
-//        NSEnumerator *enumerator = [dictionary keyEnumerator];
-//        NSString *key;
-//        
-//        while ((key = [enumerator nextObject])) {
-//            [POSTBody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key] dataUsingEncoding:NSUTF8StringEncoding]];
-//            [POSTBody appendData:[[NSString stringWithFormat:@"%@", [dictionary objectForKey:key]] dataUsingEncoding:NSUTF8StringEncoding]];
-//            [POSTBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", POSTBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//        }
-//        
-//        // Add the closing -- to the POST Form
-//        [POSTBody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", POSTBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//        
-//        // Add the body to the myMedRequest & return
-//        [myMedRequest setHTTPBody:POSTBody];
-//    NSError *requestError=nil;
-//           NSURLResponse *response = nil;
-//        NSData *data=[NSURLConnection sendSynchronousRequest:myMedRequest returningResponse:&response error:&requestError];
-//    NSLog(@"error---%@",requestError);
-//            if (requestError == nil) {
-//                if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-//                 NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-//                    if (statusCode != 200) {
-//                        NSLog(@"Warning, status code of response was not 200, it was %ld", (long)statusCode);
-//                    }
-//                }
-//    
-//                NSError *error;
-//                NSDictionary *returnDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-//                if (returnDictionary) {
-//                    NSLog(@"returnDictionary=%@", returnDictionary);
-//                } else {
-//                    NSLog(@"error parsing JSON response: %@", error);
-//    
-//                    NSString *returnString = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-//                    NSLog(@"returnString: %@", returnString);
-//                }
-//            } else {
-//                NSLog(@"NSURLConnection sendSynchronousRequest error: %@", requestError);
-//            }
-//    }
-
- 
 }
 
 -(void)requestFailed:(ASIHTTPRequest *)request
 {
     NSLog(@"Error %@", [request error]);
     if ([request error]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Fail."
-                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-
+        XYShowAlert(@"Upload file fails");
         return;
         
     }
@@ -387,6 +271,8 @@
     // Use when fetching text data
     NSString *responseString = [request responseString];
     NSLog(@"%@",responseString);
+    NSLog(@"%i",count);
+    XYShowAlert(@"Upload file succeeds");
 }
 
 

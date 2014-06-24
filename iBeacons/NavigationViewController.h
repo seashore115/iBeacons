@@ -14,6 +14,7 @@
 @interface NavigationViewController : UIViewController<CLLocationManagerDelegate,MKMapViewDelegate>{
      CLLocationManager *locationManager;
 }
+@property (strong, nonatomic) IBOutlet UILabel *countLabel;
 @property (strong, nonatomic) IBOutlet UILabel *DistanceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *NameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *BeaconsLabel;
@@ -37,4 +38,6 @@
 @property (strong,nonatomic)NSString* nearestBeaconName;
 @property (strong,nonatomic)NSString* nearestDistance;
 @property (nonatomic, copy)NSArray*  beaconArray;
+@property (nonatomic)NSInteger count;
+@property (nonatomic,strong)NSTimer *time;
 @end
