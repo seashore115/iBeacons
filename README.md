@@ -1,7 +1,7 @@
 iBeacons
 ========
 
-An app which is used to collect nearby general beacons message 
+An app which is used to collect nearby general beacons message and could predict the current location used for indoor navigation.
 
 Attention:
 
@@ -12,3 +12,5 @@ Attention:
 --first time to use, please open your bluetooth on your iphone
 
 --make sure your iphone supports the LTE Network 
+
+![ScreenShot](https://raw.github.com/seashore115/iBeacons/master/image.png)
