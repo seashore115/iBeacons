@@ -36,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"%@",subUrlString);
     NSData *allLocationData=[[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:subUrlString]];
     
 

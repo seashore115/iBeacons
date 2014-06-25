@@ -13,6 +13,26 @@
 
 @interface NavigationViewController : UIViewController<CLLocationManagerDelegate,MKMapViewDelegate>{
      CLLocationManager *locationManager;
+    // the map view
+	MKMapView* _mapView;
+	
+    // routes points
+    NSMutableArray* _points;
+    
+	// the data representing the route points.
+	MKPolyline* _routeLine;
+	
+	// the view we create for the line on the map
+	MKPolylineView* _routeLineView;
+	
+	// the rect that bounds the loaded points
+	MKMapRect _routeRect;
+    
+    // location manager
+    CLLocationManager* _locationManager;
+    
+    // current location
+    CLLocation* _currentLocation;
 }
 @property (strong, nonatomic) IBOutlet UILabel *countLabel;
 @property (strong, nonatomic) IBOutlet UILabel *DistanceLabel;
@@ -45,6 +65,9 @@
 @property (nonatomic) BOOL predictFlag;
 @property (strong, nonatomic) IBOutlet UILabel *predictiveLabel;
 @property (nonatomic,strong)NSTimer *predictiveTime;
+@property (nonatomic, retain) NSMutableArray* points;
+@property (nonatomic, retain) MKPolyline* routeLine;
+@property (nonatomic, retain) MKPolylineView* routeLineView;
 
 
 @end

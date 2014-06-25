@@ -55,8 +55,9 @@
         nameViewController=segue.destinationViewController;
         //ip:68.52.143.43
         //http://1.mccnav.appspot.com/floorplan.editor.html#/floorplan/
+        //http://mcc-backend.appspot.com/floorplan.editor.html#/floorplan/
         [BeaconsCollecetionData sharedManager].floorPlan=textInputBox.text;
-        nameViewController.subUrlString=[@"http://1.mccnav.appspot.com/mcc/floorplan/" stringByAppendingString: textInputBox.text];
+        nameViewController.subUrlString=[@"http://mcc-backend.appspot.com/mcc/floorplan/" stringByAppendingString: textInputBox.text];
         nameViewController.floorPlanId=textInputBox.text;
     }
 }

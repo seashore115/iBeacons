@@ -351,7 +351,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unknown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnm-Lp-3BW">
-                                <rect key="frame" x="45" y="428" width="230" height="21"/>
+                                <rect key="frame" x="0.0" y="428" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="13"/>
                                 <color key="textColor" red="0.99172911350000004" green="0.067261398180000001" blue="0.31341829110000002" alpha="1" colorSpace="calibratedRGB"/>
