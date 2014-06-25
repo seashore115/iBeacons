@@ -13,4 +13,4 @@ Attention:
 
 --make sure your iphone supports the LTE Network 
 
-![ScreenShot](https://raw.github.com/seashore115/iBeacons/master/image.png)
+![ScreenShot](https://raw.github.com/seashore115/iBeacons/master/image1.png)
