@@ -298,7 +298,8 @@
         uploadFlag=NO;
     }
     if (predictFlag) {
-        XYShowAlert(@"Wait a moment");
+        NSString *predictString=[NSString stringWithFormat:@"You are now in the %@",responseString];
+        XYShowAlert(predictString);
         predictFlag=NO;
     }
     
