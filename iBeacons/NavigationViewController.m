@@ -46,6 +46,7 @@
 @synthesize time;
 @synthesize uploadFlag;
 @synthesize predictFlag;
+@synthesize predictiveTime;
 
 
 
@@ -94,6 +95,7 @@
     self.NameLabel.text=@"unKnown";
     self.DistanceLabel.text=@"unKnown";
     self.countLabel.text=@"0";
+    self.predictiveLabel.text=@"unKnown";
     
     
     //map
@@ -129,6 +131,7 @@
     }
     locationManager.desiredAccuracy=kCLLocationAccuracyBest;
     [locationManager startUpdatingLocation];
+     predictiveTime = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(getPreidictResult) userInfo:nil repeats:YES];
 }
 
 
@@ -299,7 +302,7 @@
     }
     if (predictFlag) {
         NSString *predictString=[NSString stringWithFormat:@"You are now in the %@",responseString];
-        XYShowAlert(predictString);
+        self.predictiveLabel.text=predictString;
         predictFlag=NO;
     }
     
@@ -347,6 +350,10 @@
     }
 
 
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [predictiveTime invalidate];
 }
 
 

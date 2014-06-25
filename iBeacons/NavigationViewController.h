@@ -43,6 +43,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *showResult;
 @property (nonatomic) BOOL uploadFlag;
 @property (nonatomic) BOOL predictFlag;
+@property (strong, nonatomic) IBOutlet UILabel *predictiveLabel;
+@property (nonatomic,strong)NSTimer *predictiveTime;
 
 
 @end
