@@ -15,6 +15,7 @@
 #import "BeaconTestViewController.h"
 #import "MagneticTestViewController.h"
 #import "NavigationViewController.h"
+#import "PredictTableViewController.h"
 
 
 
@@ -193,10 +194,14 @@
     REMenuItem *testNavigation=[[REMenuItem alloc] initWithTitle:@"Navigation Test" image:nil highlightedImage:nil action:^(REMenuItem *item){
         [self performSegueWithIdentifier:@"navigation" sender:self];
     }];
+    REMenuItem *predictNavigation=[[REMenuItem alloc] initWithTitle:@"Prediction Test" image:nil highlightedImage:nil action:^(REMenuItem *item){
+        [self performSegueWithIdentifier:@"predict" sender:self];
+    }];
     testBeacon.tag=0;
     testMagnetic.tag=1;
     testNavigation.tag=2;
-    _test = [[REMenu alloc] initWithItems:@[testBeacon,testMagnetic,testNavigation]];
+    predictNavigation.tag=3;
+    _test = [[REMenu alloc] initWithItems:@[testBeacon,testMagnetic,testNavigation,predictNavigation]];
     _test.cornerRadius = 4;
     _test.shadowColor = [UIColor blackColor];
     _test.shadowOffset = CGSizeMake(0, 1);
@@ -221,6 +226,9 @@
     }else if ([segue.identifier isEqualToString:@"navigation"]){
         NavigationViewController *navigationTest;
         navigationTest= segue.destinationViewController;
+    }else{
+        PredictTableViewController *predictTest;
+        predictTest=segue.destinationViewController;
     }
 }
 

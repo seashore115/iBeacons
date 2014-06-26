@@ -232,6 +232,7 @@
     [magnetic setObject:[NSNumber numberWithFloat:[yValue floatValue]]forKey:@"y"];
     [magnetic setObject:[NSNumber numberWithFloat:[zValue floatValue]] forKey:@"z"];
     [dataInMessage setObject:magnetic forKey:@"mag"];
+    [dataInMessage setObject:roomName forKey:@"locationId"];
     [data addObject:dataInMessage];
     NSLog(@"------++%@\n\n",dataInMessage);
     NSLog(@"++++++-----%@\n\n",data);
@@ -249,7 +250,7 @@
     [dictionary setObject:[NSNumber numberWithInt:[timeStamp intValue]] forKey:@"timestamp"];
     [dictionary setObject:data forKey:@"data"];
 
-    
+    NSLog(@"%@",dictionary);
 //    NSMutableArray *array=[[NSMutableArray alloc]initWithCapacity:10];
 //    [array addObject:dictionary];
     
@@ -297,7 +298,12 @@
 {
     // Use when fetching text data
     NSString *responseString = [request responseString];
+    NSData *responseData=[request responseData];
     NSLog(@"%@",responseString);
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData
+                                                         options:kNilOptions error:&error];
+    NSLog(@"%@", [json objectForKey:@"3"]);
     NSLog(@"%li",(long)count);
     if (uploadFlag) {
         XYShowAlert(@"Upload file succeeds");
@@ -305,7 +311,7 @@
     }
     if (predictFlag) {
         NSString *predictString=[NSString stringWithFormat:@"You are now in the %@",responseString];
-        if (responseString.length>30) {
+        if (responseString.length>70) {
             self.predictiveLabel.text=@"unKnown";
         }else{
             self.predictiveLabel.text=predictString;

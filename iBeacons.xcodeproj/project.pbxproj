@@ -58,6 +58,7 @@
 		18186E361958867A009C9127 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18186E351958867A009C9127 /* CFNetwork.framework */; };
 		18186E381958868A009C9127 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18186E371958868A009C9127 /* MobileCoreServices.framework */; };
 		18186E3A19588738009C9127 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 18186E3919588738009C9127 /* libz.dylib */; };
+		181D6B75195C9C9F00B59634 /* PredictTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181D6B74195C9C9F00B59634 /* PredictTableViewController.m */; };
 		18211D1718C6ED8F005B2739 /* CostumSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 18211D1518C6ED8F005B2739 /* CostumSegue.m */; };
 		18211D1A18C6F51B005B2739 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18211D1918C6F51B005B2739 /* MenuViewController.m */; };
 		18211D2018C7CAFB005B2739 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18211D1F18C7CAFB005B2739 /* DetailViewController.m */; };
@@ -247,6 +248,8 @@
 		18186E351958867A009C9127 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		18186E371958868A009C9127 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		18186E3919588738009C9127 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		181D6B73195C9C9F00B59634 /* PredictTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PredictTableViewController.h; sourceTree = "<group>"; };
+		181D6B74195C9C9F00B59634 /* PredictTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PredictTableViewController.m; sourceTree = "<group>"; };
 		18211D1518C6ED8F005B2739 /* CostumSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CostumSegue.m; path = ../iBeacons/CostumSegue.m; sourceTree = "<group>"; };
 		18211D1618C6ED8F005B2739 /* CostumSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CostumSegue.h; path = ../iBeacons/CostumSegue.h; sourceTree = "<group>"; };
 		18211D1818C6F51B005B2739 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -497,6 +500,8 @@
 		1813815B18C5712100142833 /* iBeacons */ = {
 			isa = PBXGroup;
 			children = (
+				181D6B73195C9C9F00B59634 /* PredictTableViewController.h */,
+				181D6B74195C9C9F00B59634 /* PredictTableViewController.m */,
 				18385EC0195762BF002392A2 /* UIDeviceHardware.h */,
 				18385EC1195762BF002392A2 /* UIDeviceHardware.m */,
 				185AF1A818F09C960043FBF1 /* BeaconsCollecetionData.h */,
@@ -1039,6 +1044,7 @@
 				18186E141958865F009C9127 /* ASINetworkQueue.m in Sources */,
 				18385EBD195730F6002392A2 /* UIButton+Bootstrap.m in Sources */,
 				18186E181958865F009C9127 /* ASICloudFilesContainerRequest.m in Sources */,
+				181D6B75195C9C9F00B59634 /* PredictTableViewController.m in Sources */,
 				18E1F3B618D6CC3F006BBCF8 /* FXLabel.m in Sources */,
 				185AE29918D7CB9D00CCF3ED /* XHWaterDropRefresh.m in Sources */,
 				18211D2018C7CAFB005B2739 /* DetailViewController.m in Sources */,

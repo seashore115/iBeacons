@@ -198,6 +198,7 @@
                         <segue destination="HZy-d1-0fD" kind="push" identifier="beacon" id="CvI-9r-iWp"/>
                         <segue destination="MQ7-Jp-Gxy" kind="push" identifier="magnetic" id="F1m-LJ-Mkx"/>
                         <segue destination="hVY-GH-2Ns" kind="push" identifier="navigation" id="gwG-tb-IeI"/>
+                        <segue destination="C3F-yS-lMR" kind="push" identifier="predict" id="dAe-Pn-5yt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9BP-Jd-isI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -253,6 +254,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6zp-Ii-S6D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1915" y="-43"/>
+        </scene>
+        <!--Predict Table View Controller-->
+        <scene sceneID="618-gk-JeK">
+            <objects>
+                <tableViewController id="C3F-yS-lMR" customClass="PredictTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="sSZ-Of-lnr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="CBh-by-MPB" detailTextLabel="q2F-1g-6TG" rowHeight="50" style="IBUITableViewCellStyleValue1" id="2fB-iK-MiV">
+                                <rect key="frame" x="0.0" y="119" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2fB-iK-MiV" id="IeI-8B-t3K">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CBh-by-MPB">
+                                            <rect key="frame" x="15" y="17" width="31" height="17"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="14"/>
+                                            <color key="textColor" red="0.075603328969999994" green="0.64313725489999995" blue="0.081671068410000006" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="0%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="q2F-1g-6TG">
+                                            <rect key="frame" x="281" y="15" width="24" height="19"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="C3F-yS-lMR" id="S87-GN-nEU"/>
+                            <outlet property="delegate" destination="C3F-yS-lMR" id="4Xp-zr-Ibt"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="R9w-Y4-mZR"/>
+                    <connections>
+                        <outlet property="tableView" destination="sSZ-Of-lnr" id="ugb-KZ-FS2"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zE5-dQ-RBr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="652" y="828"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="e9u-0L-kKD">
