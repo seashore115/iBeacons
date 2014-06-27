@@ -30,10 +30,10 @@
 @synthesize beaconArray;
 @synthesize time;
 @synthesize json;
-@synthesize sum;
-@synthesize correctSumOne;
-@synthesize correctSumTwo;
-@synthesize correctSumThree;
+//@synthesize sum;
+//@synthesize correctSumOne;
+//@synthesize correctSumTwo;
+//@synthesize correctSumThree;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -54,10 +54,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     //sum
-    sum=0;
-    correctSumThree=0;
-    correctSumTwo=0;
-    correctSumOne=0;
+//    sum=0;
+//    correctSumThree=0;
+//    correctSumTwo=0;
+//    correctSumOne=0;
     
     //floolplan&rome
     floorPlanId=[[BeaconsCollecetionData sharedManager] floorPlan];
@@ -160,33 +160,35 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text=[[json objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]] stringByAppendingString:[NSString stringWithFormat:@" with method of %d",indexPath.row+1]];
-    if ([[json objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]] isEqualToString:roomName]&&(indexPath.row==0)) {
-        ++correctSumOne;
-        NSLog(@"1-%d",correctSumOne);
-
-    }else if ([[json objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]] isEqualToString:roomName]&&(indexPath.row==1)){
-        ++correctSumTwo;
-        NSLog(@"2-%d",correctSumTwo);
-    }else if ([[json objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]] isEqualToString:roomName]&&(indexPath.row==2)){
-        ++correctSumThree;
-        NSLog(@"3-%d",correctSumThree);
-    }
-    if (indexPath.row==0) {
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"Accuracay: %.2f%%",(float)correctSumOne/sum*100];
-    }else if(indexPath.row==1){
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"Accuracay: %.2f%%",(float)correctSumTwo/sum*100];
-    }else if (indexPath.row==2){
-         cell.detailTextLabel.text=[NSString stringWithFormat:@"Accuracay: %.2f%%",(float)correctSumThree/sum*100];
-    }
-    NSLog(@"sum - %d",sum);
-
+    cell.textLabel.text=[json objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]];
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%d",indexPath.row+1];
+//    cell.textLabel.text=[[json objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row+1]] stringByAppendingString:[NSString stringWithFormat:@" with method of %ld",indexPath.row+1]];
+//    if ([[json objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row+1]] isEqualToString:roomName]&&(indexPath.row==0)) {
+//        ++correctSumOne;
+//        NSLog(@"1-%d",correctSumOne);
+//
+//    }else if ([[json objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row+1]] isEqualToString:roomName]&&(indexPath.row==1)){
+//        ++correctSumTwo;
+//        NSLog(@"2-%d",correctSumTwo);
+//    }else if ([[json objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row+1]] isEqualToString:roomName]&&(indexPath.row==2)){
+//        ++correctSumThree;
+//        NSLog(@"3-%d",correctSumThree);
+//    }
+//    if (indexPath.row==0) {
+//        cell.detailTextLabel.text=[NSString stringWithFormat:@"Accuracay: %.2f%%",(float)correctSumOne/sum*100];
+//    }else if(indexPath.row==1){
+//        cell.detailTextLabel.text=[NSString stringWithFormat:@"Accuracay: %.2f%%",(float)correctSumTwo/sum*100];
+//    }else if (indexPath.row==2){
+//         cell.detailTextLabel.text=[NSString stringWithFormat:@"Accuracay: %.2f%%",(float)correctSumThree/sum*100];
+//    }
     return cell;
     
 }
 
 
 -(void)getPreidictResult{
+//    ++sum;
+//    NSLog(@"sum - %d",sum);
     NSMutableArray *beaconMessageArray=[[NSMutableArray alloc]initWithCapacity:10000];
     NSMutableDictionary *dataInMessage=[[NSMutableDictionary alloc] initWithCapacity:30];
     NSMutableDictionary *gps=[[NSMutableDictionary alloc]initWithCapacity:10];
@@ -229,14 +231,17 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
-    correctSumThree=0;
-    correctSumTwo=0;
-    correctSumOne=0;
-    sum=0;
+//    correctSumThree=0;
+//    correctSumTwo=0;
+//    correctSumOne=0;
+//    sum=0;
     [time invalidate];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+//    correctSumThree=0;
+//    correctSumTwo=0;
+//    correctSumOne=0;
     [self getPreidictResult];
     [self.tableView reloadData];
 }
@@ -248,7 +253,7 @@
     NSError* error;
     json = [NSJSONSerialization JSONObjectWithData:responseData
                                                          options:kNilOptions error:&error];
-    ++sum;
+
     [self.tableView reloadData];
 
     

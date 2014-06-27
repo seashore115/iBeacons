@@ -25,10 +25,10 @@
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic,strong)NSDictionary *json;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic)int sum;
-@property (nonatomic)int correctSumOne;
-@property (nonatomic)int correctSumTwo;
-@property (nonatomic)int correctSumThree;
+//@property (nonatomic)int sum;
+//@property (nonatomic)int correctSumOne;
+//@property (nonatomic)int correctSumTwo;
+//@property (nonatomic)int correctSumThree;
 
 
 @end
