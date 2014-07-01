@@ -221,6 +221,7 @@
         [beaconMessageDictionary setObject:[NSNumber numberWithInt:[beacon.major intValue]] forKey:@"m"];
         [beaconMessageDictionary setObject:[NSNumber numberWithInt:[beacon.minor intValue]] forKey:@"n"];
         [beaconMessageDictionary setObject:[NSNumber numberWithFloat:[beaconDistance floatValue ]]  forKey:@"d"];
+        [beaconMessageDictionary setObject:[beacon.proximityUUID UUIDString] forKey:@"uuid"];
         [beaconMessageArray addObject: beaconMessageDictionary];
         NSLog(@"######%@\n\n",beaconMessageArray);
     }
