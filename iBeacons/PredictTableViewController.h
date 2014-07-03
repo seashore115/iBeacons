@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "ASIFormDataRequest.h"
 
 @interface PredictTableViewController : UITableViewController<CLLocationManagerDelegate>{
     CLLocationManager *locationManager;
+    
 }
 @property (strong, nonatomic)NSString* distance;
 @property (strong,nonatomic)NSString* xValue;
@@ -25,6 +27,7 @@
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic,strong)NSDictionary *json;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic,strong)ASIFormDataRequest *request;
 //@property (nonatomic)int sum;
 //@property (nonatomic)int correctSumOne;
 //@property (nonatomic)int correctSumTwo;

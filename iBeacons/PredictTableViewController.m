@@ -30,6 +30,7 @@
 @synthesize beaconArray;
 @synthesize time;
 @synthesize json;
+@synthesize request;
 //@synthesize sum;
 //@synthesize correctSumOne;
 //@synthesize correctSumTwo;
@@ -219,9 +220,9 @@
         NSError *error;
         //NSLog(@"1");
         NSData *jsonData=[NSJSONSerialization dataWithJSONObject:dataInMessage options:NSJSONWritingPrettyPrinted error:&error];
+        
         NSString *jsonString=[[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
-        //NSLog(@"%@",json);
-        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:dataUrl];
+        request = [ASIFormDataRequest requestWithURL:dataUrl];
         [request setDelegate:self];
         [request setPostValue:jsonString forKey:@"input"];
         [request startAsynchronous];
@@ -236,6 +237,7 @@
 //    correctSumOne=0;
 //    sum=0;
     [time invalidate];
+    [request clearDelegatesAndCancel];
 }
 
 -(void)viewDidAppear:(BOOL)animated{

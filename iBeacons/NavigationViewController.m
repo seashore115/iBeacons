@@ -222,8 +222,11 @@
         [beaconMessageDictionary setObject:[NSNumber numberWithInt:[beacon.minor intValue]] forKey:@"n"];
         [beaconMessageDictionary setObject:[NSNumber numberWithFloat:[beaconDistance floatValue ]]  forKey:@"d"];
         [beaconMessageDictionary setObject:[beacon.proximityUUID UUIDString] forKey:@"uuid"];
+        [beaconMessageDictionary setObject:[NSNumber numberWithInteger:beacon.rssi] forKey:@"s"];
+//        [beaconMessageDictionary setObject: beacon.batteryLevel forKey:@"p"];
         [beaconMessageArray addObject: beaconMessageDictionary];
         NSLog(@"######%@\n\n",beaconMessageArray);
+        NSLog(@"/n%@/n",beacon.batteryLevel);
     }
     [dataInMessage setObject:beaconMessageArray forKey:@"beacons"];
     [gps setObject:[NSNumber numberWithFloat:[longitude floatValue]] forKey:@"lon"];
